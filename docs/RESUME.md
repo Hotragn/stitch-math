@@ -46,3 +46,12 @@ Heartbeat: session cron 0df69177 at :07/:27/:47 runs "continue the Week 2 plan f
 
 ## Oct 18 ~13:30 UTC: DONE except the founder's publish
 - Judge review (sonnet): no false numbers; risks fixed. DEV draft 4872054 staged (published:false, some_ai, cover og.png). The founder publishes by 04:59 UTC Oct 19. Don't edit the post after the deadline.
+
+## Oct 18 ~21:30 UTC: differentiation from StitchProof (rival, crochet, published 16:14 UTC)
+- New identity: a grading sheet (white graph paper, navy #1f2a44, Inter + JetBrains Mono, a colour per size: blue, violet, cyan, slate). Signals: red, amber, green. No cream or serif.
+- Main view: the size grid, preloaded with the 4-size hat; tap a red cell for the note. Note lines are behind a toggle; can't-check cells stay amber.
+- New og.png, before.png, after.png (public/shot.html renders real API output).
+- Post: knitting + multi-size angle; StitchProof named honestly; partners Gemma + Render only (Tinker and Sentry removed); demo snippet is 3-size knitting, verified live. DEV draft 4872054 updated (published:false; tags devchallenge, hf26challenge, gemma, knitting).
+- Checker code unchanged, so the eval still holds (22/24, 1 FA). Tests 6/6.
+- Side-by-side: docs/compare/side-by-side.png (git-ignored; contains the rival's screenshot).
+- Repo description updated to the knitting multi-size angle.

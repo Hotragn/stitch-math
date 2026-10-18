@@ -32,17 +32,18 @@ Payments aren't on yet, and I haven't put it in front of a designer, so I have n
 
 ## Demo
 
-Here's what it does with one wrong round. Paste this:
+Here's what it does with one wrong number in one size. Paste this:
 
 ```
-Rnd 1: 6 sc in magic ring (6)
-Rnd 2: inc in each st around (12)
-Rnd 3: (sc, inc) x 6 (18)
-Rnd 4: (2 sc, inc) x 6 (22)
-Rnd 5: (3 sc, inc) x 6 (30)
+Sizes: S (M, L)
+Cast on 60 (66, 72) sts. Join in the round.
+Rnd 1: *K1, p1; rep from * around.
+Rnd 2: *K4, k2tog; rep from * around. 50 (55, 60) sts.
+Rnd 3: *K3, k2tog; rep from * around. 40 (44, 50) sts.
+Rnd 4: *K2, k2tog; rep from * around. 30 (33, 36) sts.
 ```
 
-You get: *"The instructions make 24 sts; the pattern says 22. Every later round agrees with 24, so 22 looks like a typo. Change it to 24."*
+S and M add up. Size L's cell on Rnd 3 turns red: *"The instructions make 48 sts; the pattern says 50. Every later round agrees with 48, so 50 looks like a typo. Change it to 48."*
 
 **[stitch-math.onrender.com](https://stitch-math.onrender.com)**. No sign-up. The 4-size hat sample is already checked when the page opens, so you see the size grid straight away; tap a red cell for the editor's note, or paste your own pattern. It's on Render's free tier, so the first check after a quiet spell can take up to a minute while the server wakes.
 
