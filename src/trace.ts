@@ -1,0 +1,25 @@
+// Optional Sentry tracing. Spans carry model names, token counts and timings,
+// never pattern text. Without SENTRY_DSN everything here is a no-op.
+
+type Sp = { setAttribute?: (k: string, v: unknown) => void } | undefined;
+let Sentry: any = null;
+
+export async function initTracing(): Promise<boolean> {
+  if (!process.env.SENTRY_DSN) return false;
+  try {
+    Sentry = await import("@sentry/node");
+    Sentry.init({
+      dsn: process.env.SENTRY_DSN,
+      tracesSampleRate: 1.0,
+      sendDefaultPii: false,
+      environment: process.env.RENDER ? "production" : "local",
+      beforeSendTransaction(ev: any) { delete ev.request?.data; return ev; },
+    });
+    return true;
+  } catch { Sentry = null; return false; }
+}
+
+export async function span<T>(op: string, name: string, attrs: Record<string, string | number>, fn: (s: Sp) => Promise<T>): Promise<T> {
+  if (!Sentry) return fn(undefined);
+  return Sentry.startSpan({ op, name, attributes: attrs }, (s: any) => fn(s));
+}

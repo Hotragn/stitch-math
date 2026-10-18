@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stitch Math: a first-pass tech edit for knit and crochet patterns</title>
+<meta name="description" content="Paste a written knitting or crochet pattern. Gemma reads every row, plain code counts every size, and you see where the numbers stop adding up.">
+<meta property="og:title" content="Stitch Math">
+<meta property="og:description" content="Find the row where the numbers stop adding up, in every size, before your testers do.">
+<meta property="og:image" content="/og.png">
+<meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="/"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="/icon.svg#mark"/></svg>Stitch Math</a>
+  <nav><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="https://github.com/Hotragn/stitch-math">Code</a></nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Find the row where the numbers stop adding up.</h1>
+    <p class="lede">Paste a written knitting or crochet pattern. Gemma reads every row into stitches. Plain code counts them, for every size, and shows you exactly where a count is off and why.</p>
+  </section>
+
+  <section class="tool" aria-label="Check a pattern">
+    <div class="samples" role="group" aria-label="Try a sample">
+      <span>Try a sample:</span>
+      <button type="button" data-sample="hat">Hat, 4 sizes</button>
+      <button type="button" data-sample="ball">Amigurumi ball</button>
+      <button type="button" data-sample="scarf">Eyelet scarf</button>
+    </div>
+    <label for="pattern" class="sr">Your pattern</label>
+    <textarea id="pattern" spellcheck="false" placeholder="Paste the written instructions here, one row or round per line.&#10;&#10;Cast on 64 (72, 80, 88) sts.&#10;Rnd 1: *K6, k2tog; rep from * around. 56 (63, 70, 77) sts."></textarea>
+    <div class="actions">
+      <button id="go" class="primary" type="button">Check pattern</button>
+      <p class="fine">Your pattern isn't stored. It goes to Gemma 4 on Google AI Studio to be read, or <a href="#private">run it on your own laptop</a>.</p>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section id="results" class="results" hidden>
+    <div class="summary" id="summary"></div>
+    <ol class="findings" id="findings"></ol>
+    <details class="grid-wrap" id="gridwrap" open>
+      <summary>Every row, every size</summary>
+      <div class="legend"><span class="dot ok"></span>adds up <span class="dot error"></span>doesn't add up <span class="dot warn"></span>worth a look <span class="dot unchecked"></span>not checked</div>
+      <div class="scroller"><table id="grid"></table></div>
+    </details>
+  </section>
+
+  <section id="how" class="band">
+    <h2>Gemma reads. Code counts.</h2>
+    <div class="cols">
+      <div><h3>1. Gemma reads each row</h3><p>"Rnd 5: *K4, k2tog; rep from * around. 40 (45, 50, 55) sts." becomes a list: knit 4, knit 2 together, repeat to the end, and the count the pattern promises for each size. Gemma never does the math and never edits your words.</p></div>
+      <div><h3>2. Code does the stitch math</h3><p>A stitch table says what each stitch uses and makes: k2tog uses 2 and makes 1, yo makes 1, inc uses 1 and makes 2. The checker carries the live count from row to row, for every size, and checks that every repeat fits.</p></div>
+      <div><h3>3. You get a tech editor's note</h3><p>When a count is off, it looks at the next rows to tell a typo from a wrong instruction: "Every later round agrees with 66, so 68 looks like a typo." Lines it can't read are marked "not checked", never guessed.</p></div>
+    </div>
+    <p class="why">Why not just ask a chatbot? We tried. Asked to check the 4-size hat sample, Gemma 4 on its own flagged rounds that were fine and never cleanly caught the real error, in 3 runs out of 3. Reading is a language job. Counting isn't.</p>
+  </section>
+
+  <section id="pricing" class="band">
+    <h2>Cheaper than an hour of tech editing</h2>
+    <p class="sub">Independent tech editors charge around £30 an hour and a pattern takes 30 minutes to 7 hours (<a href="https://www.samlovesyarn.co.uk/services-7">one editor's rate card</a>). One designer puts tech editing at about £50 a pattern, on a pattern that sells for about £3.75 (<a href="https://woollywormhead.com/blog/2018/5/10/the-true-cost-of-a-pattern-revisited">Woolly Wormhead</a>). Stitch Math doesn't replace your editor. It catches the counting slips first, so the hours you pay for go on everything else.</p>
+    <div class="plans">
+      <div class="plan"><h3>Free</h3><p class="price">$0</p><ul><li>3 patterns a month</li><li>Every size, every row</li></ul></div>
+      <div class="plan best"><h3>Per pattern</h3><p class="price">$5</p><ul><li>One pattern, all sizes</li><li>Re-check after edits for 30 days</li></ul></div>
+      <div class="plan"><h3>Designer</h3><p class="price">$12<span>/mo</span></p><ul><li>Unlimited patterns</li><li>Batch check a whole collection</li></ul></div>
+    </div>
+    <p class="fine center">Payments aren't switched on yet. This is the price we'd charge. A check costs us about a tenth of a cent in model time.</p>
+  </section>
+
+  <section id="private" class="band">
+    <h2>Your unreleased pattern stays yours</h2>
+    <p>The checker is open source and the model is open-weight, so you can run the whole thing on your own laptop. The pattern never leaves it.</p>
+    <pre><code>ollama pull gemma4:e4b
+git clone https://github.com/Hotragn/stitch-math && cd stitch-math
+GEMMA_LOCAL=1 npm start</code></pre>
+  </section>
+
+  <section class="band limits">
+    <h2>What it can't check yet</h2>
+    <ul>
+      <li>Charts, and rows written as "work in pattern as established"</li>
+      <li>"At the same time" shaping, and short rows</li>
+      <li>Whether the finished piece fits or looks right: that's what test knitters and your editor are for</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <p>Built for the DEV Hacktoberfest Open-Source AI Challenge. Runs on a free server that sleeps, so the first check after a quiet spell can take up to a minute.</p>
+</footer>
+<script src="/app.js" type="module"></script>
+</body>
+</html>
