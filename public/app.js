@@ -56,6 +56,11 @@ function render({ report, usage, ms, read, readMs, countMs }) {
   const sizes = report.sizes;
   const n = report.findings.length;
   const secs = (ms / 1000).toFixed(1);
+  if (report.total === 0) {
+    $("#summary").innerHTML = `<strong>Nothing to check</strong>`;
+    $("#findings").innerHTML = `<li class="finding" style="border-left-color:var(--unc)">I couldn't find any rows, rounds or cast-on lines in that text. Paste the written instructions, one row or round per line.</li>`;
+    $("#grid").innerHTML = ""; $("#results").hidden = false; return;
+  }
   $("#summary").innerHTML = `<strong>${n === 0 ? "No problems found" : `${n} problem${n > 1 ? "s" : ""} found`}</strong>
     <span class="meta">${report.checked} of ${report.total} rows checked · ${sizes.length} size${sizes.length > 1 ? "s" : ""} · Gemma read it in ${((readMs ?? ms) / 1000).toFixed(1)}s${usage.cached && !usage.calls ? " (from cache)" : ""} · the counting took ${countMs ?? "<1"} ms</span>`;
   const byI = new Map(report.lines.map((l) => [l.i, l]));

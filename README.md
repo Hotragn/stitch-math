@@ -14,7 +14,22 @@ npm start                                       # http://localhost:8790
 npm test
 ```
 
-Node 22.18 or newer (TypeScript runs directly, no build step).
+Node 22.18 or newer (TypeScript runs directly, no build step). Deploy note: Render auto-deploy has no webhook on this repo, so `python3 scripts/deploy.py` triggers a deploy.
+
+## Results
+
+- **Eval** (`evals/report.md`): 8 clean patterns + 24 copies with one seeded error each. Gemma reads + code counts caught 24 of 24, with 0 false alarms on the clean patterns. Gemma 4 acting as the editor alone caught 18, with 17 false alarms. A hand-written regex reader + code caught 6.
+- **Real patterns** (`evals/real-patterns.md`): seven free patterns by other designers, every flag checked by hand, including the two layouts it still gets wrong.
+- **Tinker** (`ml/`, `evals/report-lora.md`): a Qwen3.5-4B LoRA trained on 2,000 synthetic lines reads 108 of 112 real lines right and lets the checker catch 21 of 24.
+
+## Run it fully local
+
+```sh
+ollama pull gemma4:e4b-it-q4_K_M
+GEMMA_LOCAL=1 npm start
+```
+
+The pattern never leaves your machine. The small model is a weaker reader than Gemma 4 26B (see `ml/report.md`).
 
 ## How it works
 
