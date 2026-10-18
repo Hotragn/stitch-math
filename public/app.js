@@ -52,12 +52,12 @@ function readAs(line) {
 }
 const fmt = (n) => Array.isArray(n) ? n.join("/") : n;
 
-function render({ report, usage, ms, read }) {
+function render({ report, usage, ms, read, readMs, countMs }) {
   const sizes = report.sizes;
   const n = report.findings.length;
   const secs = (ms / 1000).toFixed(1);
   $("#summary").innerHTML = `<strong>${n === 0 ? "No problems found" : `${n} problem${n > 1 ? "s" : ""} found`}</strong>
-    <span class="meta">${report.checked} of ${report.total} rows checked · ${sizes.length} size${sizes.length > 1 ? "s" : ""} · ${secs}s · ${usage.calls} Gemma call${usage.calls === 1 ? "" : "s"}${usage.cached ? `, ${usage.cached} from cache` : ""}</span>`;
+    <span class="meta">${report.checked} of ${report.total} rows checked · ${sizes.length} size${sizes.length > 1 ? "s" : ""} · Gemma read it in ${((readMs ?? ms) / 1000).toFixed(1)}s${usage.cached && !usage.calls ? " (from cache)" : ""} · the counting took ${countMs ?? "<1"} ms</span>`;
   const byI = new Map(report.lines.map((l) => [l.i, l]));
   $("#findings").innerHTML = n === 0
     ? `<li class="clean">Every row that could be checked adds up in every size.${report.checked < report.total ? " Grey rows weren't checked; see the table." : ""}</li>`

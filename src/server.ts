@@ -4,7 +4,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join, extname } from "node:path";
 import { readPattern } from "./parse/gemma.ts";
 import { check } from "./engine/check.ts";
-import { initTracing, span } from "./trace.ts";
+import { initTracing, span, traceId } from "./trace.ts";
 
 if (existsSync(".env")) for (const l of readFileSync(".env", "utf8").split("\n")) {
   const m = l.match(/^([A-Z_]+)=(.*)$/); if (m && !process.env[m[1]]) process.env[m[1]] = m[2].trim();
@@ -29,9 +29,15 @@ const stats = { checks: 0, rows: 0, problems: 0, since: new Date().toISOString()
 async function runCheck(pattern: string) {
   const t0 = Date.now();
   return span("gen_ai.invoke_agent", "stitch check", { "stitch.lines": pattern.split("\n").length }, async () => {
+    const tid = traceId();
+    const t1 = Date.now();
     const { parsed, usage } = await readPattern(pattern);
+    const readMs = Date.now() - t1;
+    const t2 = performance.now();
     const report = await span("stitch.count", "count every size", {}, async () => check(parsed));
-    return { report, usage, ms: Date.now() - t0, craft: parsed.craft, read: parsed.lines };
+    const countMs = Math.round((performance.now() - t2) * 10) / 10;
+    console.log(JSON.stringify({ check: true, trace: tid, lines: parsed.text.length, sizes: report.sizes.length, findings: report.findings.length, readMs, countMs, calls: usage.calls, cached: usage.cached, inTok: usage.inTokens, outTok: usage.outTokens }));
+    return { report, usage, ms: Date.now() - t0, readMs, countMs, craft: parsed.craft, read: parsed.lines };
   });
 }
 

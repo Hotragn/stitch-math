@@ -24,3 +24,7 @@ export async function span<T>(op: string, name: string, attrs: Record<string, st
   if (!Sentry) return fn(undefined);
   return Sentry.startSpan({ op, name, attributes: attrs }, (s: any) => fn(s));
 }
+
+export function traceId(): string | null {
+  try { const sp = Sentry?.getActiveSpan?.(); return sp ? Sentry.spanToJSON(sp).trace_id ?? null : null; } catch { return null; }
+}
