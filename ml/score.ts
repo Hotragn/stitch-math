@@ -82,9 +82,9 @@ if (process.argv.includes("--e4b")) {
     return { ...e, pred: JSON.stringify(lineToRaw(L)) };
   };
   const out: any[] = [], outR: any[] = [];
-  for (const e of synth) out.push(await runOne(e, false));
+  if (!process.argv.includes("--real-only")) for (const e of synth) out.push(await runOne(e, false));
   for (const e of real) outR.push(await runOne(e, true));
-  writeFileSync("ml/data/preds_heldout_synth_e4b.jsonl", out.map((x) => JSON.stringify(x)).join("\n"));
+  if (out.length) writeFileSync("ml/data/preds_heldout_synth_e4b.jsonl", out.map((x) => JSON.stringify(x)).join("\n"));
   writeFileSync("ml/data/preds_real_e4b.jsonl", outR.map((x) => JSON.stringify(x)).join("\n"));
 }
 for (const who of ["e4b"]) {

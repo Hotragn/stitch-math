@@ -24,7 +24,8 @@ async function callLocal(prompt: string, usage: Usage): Promise<string> {
   usage.inTokens += j.prompt_eval_count ?? 0; usage.outTokens += j.eval_count ?? 0;
   return j.message?.content ?? "";
 }
-const CHUNK = 10;
+const CHUNK = 14;
+const PARALLEL = 4; // AI Studio rate-limits per minute; a long pattern shouldn't fire 10 calls at once
 
 export type Usage = { calls: number; inTokens: number; outTokens: number; ms: number; cached: number; retries: number };
 
@@ -52,6 +53,15 @@ Examples (the [L..] id is the "i"):
 "Rows 3-100: repeat Row 2." -> {"k":"repeat","f":2,"to":2,"t":98}
 "Knit, increasing 2 (0, 2) sts evenly." -> {"k":"row","o":[{"o":[["k",1]],"r":1},["m1",[2,0,2]]]}
 "sc evenly around" or any row with no exact stitch numbers -> {"k":"skip","why":"no exact counts"}
+"Round 1: K4, k2tog around—25 (30) sts." (no asterisk: the whole sequence repeats) -> {"k":"row","o":[{"o":[["k",4],["k2tog",1]],"r":1}],"s":[25,30]}
+"Keep decreasing like this, one fewer st between decreases, until 6 sts remain." -> {"k":"skip","why":"continues until a count","s":6}  (always give the count it ends at as "s")
+"Work even in pattern until piece measures 6 in." or "Knit every round until it measures 5 in" (no shaping) -> {"k":"row","o":[{"o":[["k",1]],"r":1}]}  (the count doesn't change)
+"R 1: 2 ch, 6 sc in the 2nd ch from hook (6)" (a new piece starts) -> {"k":"setup","c":6,"s":6}. Any "Rnd 1"/"R 1" that starts a new piece is a setup.
+A row that joins pieces made separately ("11 sc on the 1st leg, 1 inc, 1 inc, 11 sc on the 2nd leg (26)") -> {"k":"skip","why":"joins two pieces","s":26}
+"BLO 24 sc" / "in back loops only, sc around" -> BLO and FLO are not stitches; leave them out: [["sc",24]]
+Abbreviation, legend and materials lines ("sc = single crochet", "( ) = stitch count") -> {"k":"note"}
+Finishing steps ("break yarn and thread through remaining sts", "fasten off", "weave in ends", "for an I-cord finish...") -> {"k":"note"}
+SIZE-SPECIFIC ROWS: if a row is worked only in some sizes ("Round 7 (for size L only)", or a note says "S size jump to Rnd 4", meaning S skips Rnds 1-3), add "only": one 1 or 0 per size, in size order (1 = worked in that size). Example with sizes S, M, L and "S jump to Rnd 3, M jump to Rnd 2": Rnd 1 -> "only":[0,0,1], Rnd 2 -> "only":[0,1,1].
 "Rnds 12-40 (12-44, 12-48): Knit." -> {"i":6,"k":"row","x":[29,33,37],"o":[{"o":[["k",1]],"r":1}]}
 "Rnd 1: *K6, k2tog; rep from * around. 56 (63, 70) sts." -> {"i":7,"k":"row","o":[{"o":[["k",6],["k2tog",1]],"r":1}],"s":[56,63,70]}
 
@@ -115,6 +125,7 @@ async function callGemma(prompt: string, usage: Usage, label: string): Promise<u
       return out;
     } catch (e: any) {
       lastErr = e; usage.retries++;
+      if (process.env.DEBUG_RAW) console.error(`[err ${label} attempt ${attempt}]`, e?.status ?? "", String(e?.message ?? e).slice(0, 200));
       const wait = e?.status === 429 ? Math.min(e.retryMs ?? 6000 * (attempt + 1), 20_000) : 800 * (attempt + 1);
       await new Promise((r) => setTimeout(r, wait));
     }
@@ -172,13 +183,14 @@ export function toLine(raw: any): Line | null {
   const i = raw.i;
   switch (raw.k) {
     case "note": return { i, kind: "note" };
-    case "skip": return { i, kind: "unsupported", why: String(raw.why ?? "can't read this line yet").slice(0, 80) };
+    case "skip": return { i, kind: "unsupported", why: String(raw.why ?? "can't read this line yet").slice(0, 80), ...(isNum(raw.s) ? { stated: raw.s } : {}) };
     case "setup": return isNum(raw.c) ? { i, kind: "setup", count: raw.c, stated: isNum(raw.s) ? raw.s : null } : null;
     case "repeat": return typeof raw.f === "number" && typeof raw.to === "number" ? { i, kind: "repeat", from: raw.f, to: raw.to, times: isNum(raw.t) ? raw.t : 0 } : null;
     case "row": {
       const groups = toGroups(raw); if (!groups) return null;
       if (raw.x != null && !isNum(raw.x)) return null;
-      return { i, kind: "row", groups, reps: raw.x ?? 1, stated: isNum(raw.s) ? raw.s : null };
+      const only = Array.isArray(raw.only) && raw.only.every((v: unknown) => v === 0 || v === 1 || typeof v === "boolean") ? raw.only.map((v: unknown) => v === 1 || v === true) : undefined;
+      return { i, kind: "row", groups, reps: raw.x ?? 1, stated: isNum(raw.s) ? raw.s : null, ...(only ? { only } : {}) };
     }
   }
   return null;
@@ -214,9 +226,11 @@ export async function readPattern(pattern: string): Promise<{ parsed: Parsed; us
   const chunks: number[][] = [];
   for (let s = 0; s < all.length; s += CHUNK) chunks.push(all.slice(s, s + CHUNK));
   const lines = new Map<number, Line>();
-  await Promise.all(chunks.map(async (idx, c) => {
+  const busy = new Set<number>();
+  const work = async (idx: number[], c: number) => {
     const ask = (ids: number[]) => callGemma(`${RULES}\n\n${ctx}\nReturn {"lines":[...]} with exactly one object for each [L..] id below, using that id's number as "i".\n\nLines:\n${linesBlock(text, ids)}`, usage, `chunk ${c}`);
-    let raw: any = await ask(idx).catch(() => null);
+    let failed = false;
+    let raw: any = await ask(idx).catch(() => { failed = true; return null; });
     // Ids from the model are a hint. If it answered one object per line sent, trust the order instead.
     const got = (r: any, sent: number[]) => {
       const list: any[] = Array.isArray(r?.lines) ? r.lines : [];
@@ -226,9 +240,12 @@ export async function readPattern(pattern: string): Promise<{ parsed: Parsed; us
     };
     got(raw, idx);
     const missing = idx.filter((i) => !lines.has(i));
-    if (missing.length) got(await ask(missing).catch(() => null), missing); // one re-ask for lines that failed the shape check
-  }));
+    if (missing.length) { failed = false; got(await ask(missing).catch(() => { failed = true; return null; }), missing); } // one re-ask for lines that failed the shape check
+    if (failed) for (const i of idx) if (!lines.has(i)) busy.add(i);
+  };
+  const queue = chunks.map((idx, c) => () => work(idx, c));
+  await Promise.all(Array.from({ length: PARALLEL }, async () => { while (queue.length) await queue.shift()!(); }));
 
-  const out: Line[] = all.map((i) => lines.get(i) ?? { i, kind: "unsupported", why: "the reader's answer for this line didn't pass the shape check" });
+  const out: Line[] = all.map((i) => lines.get(i) ?? { i, kind: "unsupported", why: busy.has(i) ? "the reader was busy (rate limit), so this line wasn't read; try again in a minute" : "the reader's answer for this line didn't pass the shape check" });
   return { parsed: { craft: meta.craft, sizes: meta.sizes, custom: meta.custom, lines: out, text }, usage, meta };
 }

@@ -62,7 +62,9 @@ def main():
             step += 1
             if step % 10 == 1:
                 print(f"step {step} epoch {ep} loss {loss:.4f} ({time.time() - t0:.0f}s)", flush=True)
-    sampler = tc.save_weights_and_get_sampling_client(name="stitch-reader-lora")
+    saved = tc.save_weights_for_sampler(name="stitch-reader-lora-v1").result()
+    log["sampler_path"] = saved.path
+    sampler = sc.create_sampling_client(model_path=saved.path)
     log["train_seconds"] = round(time.time() - t0)
     json.dump(log, open("ml/data/run.json", "w"), indent=1)
     print("trained", log["train_seconds"], "s, tokens", log["tokens"], flush=True)
@@ -71,9 +73,10 @@ def main():
     base = sc.create_sampling_client(base_model=BASE)
     params = types.SamplingParams(max_tokens=300, temperature=0.0, stop=[tok.eos_token])
     sets = {"heldout_synth": [json.loads(l) for l in open("ml/data/heldout_synth.jsonl")],
-            "real": [json.loads(l) for l in open("ml/data/real_lines.jsonl")] if os.path.exists("ml/data/real_lines.jsonl") else []}
+            "real": [json.loads(l) for l in open("ml/data/real_lines.jsonl")] if os.path.exists("ml/data/real_lines.jsonl") else [],
+            "eval": [json.loads(l) for l in open("ml/data/eval_lines.jsonl")] if os.path.exists("ml/data/eval_lines.jsonl") else []}
     for name, rows in sets.items():
-        for who, cli in [("lora", sampler), ("base", base)]:
+        for who, cli in ([("lora", sampler)] if name == "eval" else [("lora", sampler), ("base", base)]):
             futs = [cli.sample(types.ModelInput.from_ints(list(encode_prompt(e))), 1, params) for e in rows]
             with open(f"ml/data/preds_{name}_{who}.jsonl", "w") as f:
                 for e, fu in zip(rows, futs):

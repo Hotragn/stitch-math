@@ -71,3 +71,20 @@ test("rep to last 2 sts with a nested repeat", () => {
   ] };
   assert.equal(check(p).lines[1].cells[0].status, "ok");
 });
+
+test("size-only rows, resync after 'until N sts remain', and picking the count back up", () => {
+  const k = (n: number) => ({ st: "k", n }), k2tog = { st: "k2tog", n: 1 };
+  const p: Parsed = { craft: "knit", sizes: ["S", "L"], text: ["CO", "Work in patt", "Rnd 1", "Rnd 2", "until", "Next"], lines: [
+    { i: 0, kind: "setup", count: [100, 120] },
+    { i: 1, kind: "unsupported", why: "work in pattern" },
+    { i: 2, kind: "row", groups: [{ ops: [k(18), k2tog], rest: true }], stated: [100, 114], only: [false, true] },
+    { i: 3, kind: "row", groups: [{ ops: [k(17), k2tog], rest: true }], stated: [95, 108] },
+    { i: 4, kind: "unsupported", why: "until", stated: 6 },
+    { i: 5, kind: "row", groups: [{ ops: [k2tog], rest: true }], stated: 3 },
+  ] };
+  const r = check(p);
+  assert.equal(r.findings.length, 0);
+  assert.equal(r.lines[2].cells[0].status, "info");      // not worked in S
+  assert.equal(r.lines[3].cells[1].status, "ok");        // L picked up at 114, then 108
+  assert.equal(r.lines[5].cells[0].status, "ok");        // 6 -> 3
+});

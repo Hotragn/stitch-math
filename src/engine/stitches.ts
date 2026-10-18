@@ -42,12 +42,13 @@ add(CROCHET, S("dc", 1, 1), "doublecrochet", "uktr");
 add(CROCHET, S("tr", 1, 1), "treble", "triplecrochet", "ukdtr");
 add(CROCHET, S("dtr", 1, 1), "doubletreble");
 add(CROCHET, S("slst", 1, 1), "sl", "slipstitch", "ss");
-add(CROCHET, S("blsc", 1, 1), "blo", "flo", "flsc", "fpdc", "bpdc", "fpsc", "bpsc", "fphdc", "bphdc", "fptr", "bptr",
+add(CROCHET, S("blsc", 1, 1), "flsc", "fpdc", "bpdc", "fpsc", "bpsc", "fphdc", "bphdc", "fptr", "bptr",
   "bobble", "puff", "popcorn", "pc", "bo", "cluster", "cl", "nupp", "spike", "esc", "edc", "csc", "waistcoat");
 add(CROCHET, S("inc", 1, 2), "increase", "2sc", "2scinnext", "scinc", "v", "w");
 add(CROCHET, S("dec", 2, 1), "invdec", "invisibledecrease", "sc2tog", "hdc2tog", "dc2tog", "tr2tog", "a");
 add(CROCHET, S("sc3tog", 3, 1), "dc3tog", "hdc3tog", "invdec3", "sc3dec");
 add(CROCHET, S("ch", 0, 1), "chain", "chsp", "chainstitch");
+add(CROCHET, S("blo", 0, 0), "flo", "bl", "fl", "backloop", "frontloop", "backloopsonly", "frontloopsonly", "tbl"); // modifiers, not stitches
 add(CROCHET, S("turnch", 0, 0), "turningchain", "ch1turn", "turn", "join", "joinslst", "slsttojoin", "pm", "sm", "mark");
 add(CROCHET, S("chasst", 1, 1), "chcountsasst", "ch3countsasdc", "ch2countsashdc", "ch1countsassc", "beginningch");
 add(CROCHET, S("sk", 1, 0), "skip", "skipst", "sknext");

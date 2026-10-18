@@ -9,11 +9,11 @@ export type Op = { st: string; n: Num; same?: boolean } | { group: Op[]; times: 
 export type Group = { ops: Op[]; times?: Num | null; rest?: boolean };
 
 export type Line =
-  | { i: number; kind: "row"; reps?: Num; groups: Group[]; stated?: Num | null }
+  | { i: number; kind: "row"; reps?: Num; groups: Group[]; stated?: Num | null; only?: boolean[] }
   | { i: number; kind: "setup"; count: Num; stated?: Num | null }
   | { i: number; kind: "repeat"; from: number; to: number; times: Num }
   | { i: number; kind: "note" }
-  | { i: number; kind: "unsupported"; why: string };
+  | { i: number; kind: "unsupported"; why: string; stated?: Num | null };
 
 export type Parsed = { craft: Craft; sizes: string[]; custom?: Custom; lines: Line[]; text: string[] };
 
@@ -124,7 +124,8 @@ export function check(p: Parsed): Report {
       res.cells[s] = cell;
 
       if (line.kind === "note") { cell.status = "info"; cell.after = live; continue; }
-      if (line.kind === "unsupported") { cell.msg = line.why; live = stated ?? null; cell.after = live; continue; }
+      if (line.kind === "row" && line.only && line.only[s] === false) { cell.status = "info"; cell.msg = "not worked in this size"; cell.after = live; cell.stated = null; continue; }
+      if (line.kind === "unsupported") { cell.msg = line.why + (stated != null ? `; the pattern says ${stated} sts after it, so counting picks up from there` : ""); live = stated ?? null; cell.after = live; continue; }
 
       if ("stated" in line && !sizeCountOk(line.stated) && s === 0) {
         findings.push({ i: line.i, size: -1, kind: "sizes", msg: `This line gives ${(line.stated as number[]).length} counts, but the pattern has ${S} sizes.` });
@@ -136,6 +137,11 @@ export function check(p: Parsed): Report {
           if (c == null) throw new CheckError("unreadable", "no stitch count");
           cell.after = c;
         } else if (line.kind === "row") {
+          if (live == null && stated != null) {
+            // Lost the count on an unreadable line: pick it up again from what the pattern states here.
+            cell.status = "unchecked"; cell.msg = `picked the count back up from the pattern (${stated})`; cell.after = stated;
+            live = stated; continue;
+          }
           if (live == null) throw new CheckError("no-start", "there's no known stitch count to start from");
           let n = live; let warn: string | undefined;
           const reps = at(line.reps ?? 1, s) ?? 1;
@@ -212,7 +218,7 @@ export function check(p: Parsed): Report {
     }
   }
 
-  const checked = results.filter((r) => r.kind !== "note" && r.cells.every((c) => c.status === "ok" || c.status === "error" || c.status === "warn")).length;
+  const checked = results.filter((r) => r.kind !== "note" && r.cells.every((c) => c.status === "ok" || c.status === "error" || c.status === "warn" || (c.status === "info" && c.msg === "not worked in this size"))).length;
   const total = results.filter((r) => r.kind !== "note").length;
   return { sizes: p.sizes.length ? p.sizes : ["One size"], lines: results, findings, checked, total };
 }
