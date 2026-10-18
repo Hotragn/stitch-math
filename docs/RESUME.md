@@ -37,3 +37,9 @@ Heartbeat: session cron 0df69177 at :07/:27/:47 runs "continue the Week 2 plan f
 - Render auto-deploy has no webhook: run `python3 scripts/deploy.py` after each push.
 - Post draft: docs/post.md (fill [[TINKER]], [[TINKER_LINE]], [[E4B]]; update eval numbers from the frozen run).
 - Next: finish the post, stage the DEV draft (published:false), run a fresh-context judge review, fix, write REPORT.md.
+
+## Oct 18 13:15 UTC (after the 2nd usage-limit stop, 11:20 to 13:10)
+- Frozen eval: ours 22/24, 1 FA clean (misses: Gemma silently "fixed" 2 wrong instructions). The post, site and README say this.
+- E4B frozen: 87/112 real lines (78%).
+- Post: docs/post.md, 1,756 readable words, all [[..]] filled, 20/20 links 200, privacy scan clean.
+- Running: lean judge review (sonnet). Then fix blockers, stage the DEV draft via DevRelay create_article published:false, fill the REPORT.md draft link, commit post.md.
