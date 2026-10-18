@@ -8,13 +8,13 @@
 <meta property="og:title" content="Stitch Math">
 <meta property="og:description" content="Find the row where the stitch counts stop adding up, in every size, before your testers do.">
 <meta property="og:image" content="/og.png">
-<meta name="theme-color" content="#f7f3ec" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#16130f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1626" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css?v=5">
 </head>
 <body>
 <header class="top">
@@ -24,21 +24,31 @@
 
 <main>
   <section class="hero">
-    <p class="kicker"><span class="stitches" aria-hidden="true"></span>For anyone who writes or sells knitting and crochet patterns</p>
-    <h1>Find the row where the stitches stop adding up.</h1>
-    <p class="lede">Paste your written pattern. Stitch Math counts every row in every size, the way a tech editor would, and tells you in plain words which number is wrong and what it should be.</p>
+    <p class="kicker">A first-pass tech edit for knitting designers</p>
+    <h1>Grade every size at once. See which count is wrong.</h1>
+    <p class="lede">Stitch Math reads your written pattern and counts every row in every size, then lays it out as a grading sheet: rows down the side, sizes across the top. A red cell is a count that doesn't add up. Tap it for the editor's note.</p>
   </section>
 
-  <section class="tool seam" aria-label="Check a pattern">
-    <div class="samples" role="group" aria-label="Try a sample">
-      <span>Try a sample:</span>
+  <section id="results" class="sheet" aria-label="Size grid">
+    <div class="sheet-head"><div class="summary" id="summary"><strong>Loading the 4-size hat sample…</strong></div></div>
+    <div class="legend" id="legend"><span><span class="dot ok"></span>adds up</span><span><span class="dot error"></span>mistake</span><span><span class="dot unchecked"></span>can't check</span></div>
+    <div class="note-box" id="note" hidden></div>
+    <div class="scroller"><table class="grid" id="grid"></table></div>
+    <ol class="findings" id="findings"></ol>
+    <p class="fine" style="padding:6px 16px 14px" id="sheet-foot">This sample has two mistakes we put in: one size's cast-on, and one typo. Every other cell is checked arithmetic.</p>
+  </section>
+
+  <section class="tool sheet" aria-label="Check your own pattern">
+    <h2 style="font-size:20px;margin-bottom:8px">Check your own pattern</h2>
+    <div class="samples" role="group" aria-label="Samples">
+      <span>Or try:</span>
       <button type="button" data-sample="hat">Hat, 4 sizes (2 mistakes)</button>
       <button type="button" data-sample="hat-fixed">Same hat, fixed</button>
       <button type="button" data-sample="ball">Amigurumi ball</button>
       <button type="button" data-sample="scarf">Eyelet scarf</button>
     </div>
     <label for="pattern" class="sr">Your pattern</label>
-    <textarea id="pattern" spellcheck="false" placeholder="Paste the written instructions here, one row or round per line. For example:&#10;&#10;Rnd 1: 6 sc in magic ring (6)&#10;Rnd 2: inc in each st around (12)&#10;Rnd 3: (sc, inc) x 6 (18)"></textarea>
+    <textarea id="pattern" spellcheck="false" placeholder="Paste the written instructions here, one row or round per line. Sizes in brackets are fine:&#10;&#10;Cast on 64 (72, 80, 88) sts.&#10;Rnd 1: *K6, k2tog; rep from * around. 56 (63, 70, 77) sts."></textarea>
     <div class="actions">
       <button id="go" class="primary" type="button">Check my pattern</button>
       <p class="fine">Free to try. Nothing is stored. Your pattern goes to Gemma 4 on Google AI Studio to be read, or <a href="#private">run it on your own laptop</a>.</p>
@@ -46,24 +56,14 @@
     <p id="status" class="status" role="status" aria-live="polite"></p>
   </section>
 
-  <section id="results" class="results" hidden>
-    <div class="summary" id="summary"></div>
-    <ol class="findings" id="findings"></ol>
-    <details class="grid-wrap seam" id="gridwrap" open>
-      <summary>Every row, every size</summary>
-      <div class="legend"><span class="dot ok"></span>adds up <span class="dot error"></span>doesn't add up <span class="dot warn"></span>worth a look <span class="dot unchecked"></span>not checked</div>
-      <div class="scroller"><table id="grid"></table></div>
-    </details>
-  </section>
-
   <section id="new" class="band">
-    <h2><span class="row-no">Row 1</span>New here? What this checks, in plain words</h2>
+    <h2>New here? What this checks, in plain words</h2>
     <div class="cols">
-      <div class="seam card"><h3>A pattern is a promise</h3><p>Most rows end with a number, like <code>(18)</code> or <code>56 sts</code>. That's how many stitches you should have when the row is done. If the instructions don't really make that many, every knitter who follows them ends up stuck, unpicking, and wondering if it's their fault.</p></div>
-      <div class="seam card"><h3>Every stitch has a cost</h3><p>Some stitches add, some take away. <b>inc</b> turns 1 stitch into 2. <b>k2tog</b> turns 2 into 1. <b>yo</b> adds 1 from nothing. Add them up across a row and you know exactly how many stitches it makes. Stitch Math does that adding up for every row and every size.</p></div>
-      <div class="seam card"><h3>Sizes multiply the work</h3><p>"Cast on 64 (72, 80, 88)" is four patterns in one. A slip in one size is easy to miss by hand. Stitch Math checks each size on its own, and it tells you which size is off.</p></div>
+      <div class="card"><h3>A pattern is a promise</h3><p>Most rows end with a number, like <code>(18)</code> or <code>56 sts</code>. That's how many stitches you should have when the row is done. If the instructions don't really make that many, every knitter who follows them ends up stuck, unpicking, and wondering if it's their fault.</p></div>
+      <div class="card"><h3>Every stitch has a cost</h3><p>Some stitches add, some take away. <b>inc</b> turns 1 stitch into 2. <b>k2tog</b> turns 2 into 1. <b>yo</b> adds 1 from nothing. Add them up across a row and you know exactly how many stitches it makes. Stitch Math does that adding up for every row and every size.</p></div>
+      <div class="card"><h3>Sizes multiply the work</h3><p>"Cast on 64 (72, 80, 88)" is four patterns in one. A slip in one size is easy to miss by hand. Stitch Math checks each size on its own, and it tells you which size is off.</p></div>
     </div>
-    <details class="glossary seam">
+    <details class="glossary">
       <summary>Abbreviations it understands (a few of them)</summary>
       <dl>
         <div><dt>k / p</dt><dd>knit / purl: 1 stitch in, 1 out</dd></div>
@@ -81,18 +81,18 @@
   </section>
 
   <section id="before-after" class="band">
-    <h2><span class="row-no">Row 2</span>Before and after: one real check</h2>
+    <h2>Before and after: one real check</h2>
     <p class="sub">These are screenshots of the live checker on our 4-size hat sample. The first version has two mistakes. After fixing the two numbers it pointed at, every row in every size adds up.</p>
     <div class="ba">
-      <figure class="seam"><img src="/before.png" alt="Stitch Math on the hat with mistakes: 2 problems found. Adult S casts on 76, which can't divide into the 8-stitch decrease (80 would). Rnd 3 Adult L says 68 where the stitches make 66." loading="lazy" width="1000" height="560"><figcaption><b>Before:</b> 2 problems found, each with the fix.</figcaption></figure>
-      <figure class="seam"><img src="/after.png" alt="Stitch Math on the fixed hat: no problems found, 14 of 14 rows checked in 4 sizes." loading="lazy" width="1000" height="560"><figcaption><b>After:</b> cast-on changed to 80, and 68 to 66. No problems.</figcaption></figure>
+      <figure class="sheet"><img src="/before.png" alt="Stitch Math on the hat with mistakes: 2 problems found. Adult S casts on 76, which can't divide into the 8-stitch decrease (80 would). Rnd 3 Adult L says 68 where the stitches make 66." loading="lazy" width="1000" height="560"><figcaption><b>Before:</b> 2 problems found, each with the fix.</figcaption></figure>
+      <figure class="sheet"><img src="/after.png" alt="Stitch Math on the fixed hat: no problems found, 14 of 14 rows checked in 4 sizes." loading="lazy" width="1000" height="560"><figcaption><b>After:</b> cast-on changed to 80, and 68 to 66. No problems.</figcaption></figure>
     </div>
   </section>
 
   <section id="save" class="band">
-    <h2><span class="row-no">Row 3</span>How much could it save you?</h2>
+    <h2>How much could it save you?</h2>
     <p class="sub">Independent tech editors charge around <b>£30 an hour</b>, and a pattern takes <b>30 minutes to 7 hours</b> (<a href="https://www.samlovesyarn.co.uk/services-7">one editor's rate card</a>). One designer puts it at about <b>£50 a pattern</b>, on a pattern that sells for about £3.75 (<a href="https://woollywormhead.com/blog/2018/5/10/the-true-cost-of-a-pattern-revisited">Woolly Wormhead</a>). Your editor still does the job. Stitch Math catches the counting slips first, so you pay for fewer hours. Move the sliders to your numbers.</p>
-    <div class="calc seam">
+    <div class="calc">
       <label>Patterns you release a year <output id="o-n">6</output><input id="c-n" type="range" min="1" max="40" value="6"></label>
       <label>Tech editing hours per pattern <output id="o-h">3</output><input id="c-h" type="range" min="0.5" max="10" step="0.5" value="3"></label>
       <label>Editor's rate, £ per hour <output id="o-r">30</output><input id="c-r" type="range" min="15" max="60" step="1" value="30"></label>
@@ -107,61 +107,61 @@
   </section>
 
   <section id="real" class="band">
-    <h2><span class="row-no">Row 4</span>Tested on real patterns by other designers</h2>
+    <h2>Tested on real patterns by other designers</h2>
     <p class="sub">Our test patterns are written by us, so we also ran it on free patterns from designers' sites, and checked every flag by hand. We link to them instead of copying their text.</p>
-    <div class="scroller seam table-card"><table class="real">
+    <div class="scroller sheet table-card"><table class="real">
       <thead><tr><th>Pattern</th><th>Craft</th><th>Result</th></tr></thead>
       <tbody>
-        <tr><td><a href="https://furlscrochet.com/blogs/amigurumi-crochet-tutorials/february-amigurumi-cal-pet-week-four">Furls lion head</a></td><td>crochet</td><td><span class="c ok">clean</span> 19 of 21 rows checked, no flags</td></tr>
-        <tr><td><a href="https://woollywormhead.com/blog/2005/12/30/pattern-for-wormheads-rollin-beret">Wormhead's Rollin' Beret</a></td><td>knit, 4 sizes</td><td><span class="c ok">clean</span> after we taught it "19in size: jump to Rnd 4"</td></tr>
-        <tr><td><a href="https://allfreeknitting.com/Knit-Hats/Royal-Artisan-Hat/amp">Royal Artisan Hat</a></td><td>knit, 2 sizes</td><td><span class="c ok">clean</span> after we taught it "K4, k2tog around"</td></tr>
-        <tr><td><a href="https://amigurum.com/2018/07/little-bears-amigurumi.html">Little bears</a></td><td>crochet</td><td><span class="c ok">clean</span> after we taught it rows that join two legs</td></tr>
-        <tr><td><a href="https://amigurum.com/2018/10/amigurumi-pig-crochet-pattern.html">Amigurumi pig</a></td><td>crochet</td><td><span class="c ok">clean</span> after we taught it "BLO" is not a stitch</td></tr>
-        <tr><td><a href="https://knitting-and.com/crafts-and-needlework/knitting/patterns/hats/rolled-brim/">Family rolled-brim hat</a></td><td>knit, 6 sizes</td><td><span class="c error">false alarms</span> each size has its own section; not handled yet</td></tr>
-        <tr><td><a href="https://christacodesign.com/bene-beanie-knitting-pattern/">Bene Beanie</a></td><td>knit, 11 sizes</td><td><span class="c error">false alarms</span> size groups in separate blocks; not handled yet</td></tr>
+        <tr><td><a href="https://furlscrochet.com/blogs/amigurumi-crochet-tutorials/february-amigurumi-cal-pet-week-four">Furls lion head</a></td><td>crochet</td><td><span class="tag ok">clean</span> 19 of 21 rows checked, no flags</td></tr>
+        <tr><td><a href="https://woollywormhead.com/blog/2005/12/30/pattern-for-wormheads-rollin-beret">Wormhead's Rollin' Beret</a></td><td>knit, 4 sizes</td><td><span class="tag ok">clean</span> after we taught it "19in size: jump to Rnd 4"</td></tr>
+        <tr><td><a href="https://allfreeknitting.com/Knit-Hats/Royal-Artisan-Hat/amp">Royal Artisan Hat</a></td><td>knit, 2 sizes</td><td><span class="tag ok">clean</span> after we taught it "K4, k2tog around"</td></tr>
+        <tr><td><a href="https://amigurum.com/2018/07/little-bears-amigurumi.html">Little bears</a></td><td>crochet</td><td><span class="tag ok">clean</span> after we taught it rows that join two legs</td></tr>
+        <tr><td><a href="https://amigurum.com/2018/10/amigurumi-pig-crochet-pattern.html">Amigurumi pig</a></td><td>crochet</td><td><span class="tag ok">clean</span> after we taught it "BLO" is not a stitch</td></tr>
+        <tr><td><a href="https://knitting-and.com/crafts-and-needlework/knitting/patterns/hats/rolled-brim/">Family rolled-brim hat</a></td><td>knit, 6 sizes</td><td><span class="tag error">false alarms</span> each size has its own section; not handled yet</td></tr>
+        <tr><td><a href="https://christacodesign.com/bene-beanie-knitting-pattern/">Bene Beanie</a></td><td>knit, 11 sizes</td><td><span class="tag error">false alarms</span> size groups in separate blocks; not handled yet</td></tr>
       </tbody>
     </table></div>
     <p class="fine">None of these designers' patterns turned out to have a real counting error. Every red flag above was our misreading. Details in <a href="https://github.com/Hotragn/stitch-math/blob/master/evals/real-patterns.md">the notes</a>.</p>
   </section>
 
   <section id="how" class="band">
-    <h2><span class="row-no">Row 5</span>Gemma reads. Code counts.</h2>
+    <h2>Gemma reads. Code counts.</h2>
     <div class="cols">
-      <div class="seam card"><h3>1. Gemma reads each row</h3><p>"*K4, k2tog; rep from * around. 40 (45, 50, 55) sts." becomes a list: knit 4, knit 2 together, repeat to the end, and the count promised for each size. Gemma never does the math and never edits your words.</p></div>
-      <div class="seam card"><h3>2. Code does the stitch math</h3><p>A stitch table says what each stitch uses and makes. The checker carries the count from row to row, for every size, and checks that every repeat fits.</p></div>
-      <div class="seam card"><h3>3. You get an editor's note</h3><p>It reads ahead to tell a typo from a wrong instruction: "Every later round agrees with 66, so 68 looks like a typo." Lines it can't read are marked "not checked", never guessed.</p></div>
+      <div class="card"><h3>1. Gemma reads each row</h3><p>"*K4, k2tog; rep from * around. 40 (45, 50, 55) sts." becomes a list: knit 4, knit 2 together, repeat to the end, and the count promised for each size. Gemma never does the math and never edits your words.</p></div>
+      <div class="card"><h3>2. Code does the stitch math</h3><p>A stitch table says what each stitch uses and makes. The checker carries the count from row to row, for every size, and checks that every repeat fits.</p></div>
+      <div class="card"><h3>3. You get an editor's note</h3><p>It reads ahead to tell a typo from a wrong instruction: "Every later round agrees with 66, so 68 looks like a typo." Lines it can't read are marked "not checked", never guessed.</p></div>
     </div>
     <p class="why">Why not just ask a chatbot? We measured it. On 8 test patterns plus 24 copies with one error each, Gemma 4 acting as the editor caught 18 of the 24 errors and raised 17 false alarms on patterns with nothing wrong. With Gemma only reading, Stitch Math caught 22 and raised 1 (<a href="https://github.com/Hotragn/stitch-math/blob/master/evals/report.md">the full report</a>). Reading is a language job. Counting isn't.</p>
   </section>
 
   <section id="pricing" class="band">
-    <h2><span class="row-no">Row 6</span>Pricing</h2>
+    <h2>Pricing</h2>
     <div class="plans">
-      <div class="plan seam"><h3>Free</h3><p class="price">$0</p><ul><li>3 patterns a month</li><li>Every size, every row</li></ul></div>
-      <div class="plan seam best"><h3>Per pattern</h3><p class="price">$5</p><ul><li>One pattern, all sizes</li><li>Re-check after edits for 30 days</li></ul></div>
-      <div class="plan seam"><h3>Designer</h3><p class="price">$12<span>/mo</span></p><ul><li>Unlimited patterns</li><li>Batch check a whole collection</li></ul></div>
+      <div class="plan"><h3>Free</h3><p class="price">$0</p><ul><li>3 patterns a month</li><li>Every size, every row</li></ul></div>
+      <div class="plan sheet best"><h3>Per pattern</h3><p class="price">$5</p><ul><li>One pattern, all sizes</li><li>Re-check after edits for 30 days</li></ul></div>
+      <div class="plan"><h3>Designer</h3><p class="price">$12<span>/mo</span></p><ul><li>Unlimited patterns</li><li>Batch check a whole collection</li></ul></div>
     </div>
     <p class="fine center">Payments aren't switched on yet; this is the price we'd charge. A check costs us under a tenth of a cent in model time.</p>
   </section>
 
   <section id="faq" class="band">
-    <h2><span class="row-no">Row 7</span>Questions</h2>
-    <details class="faq seam"><summary>Do I need to format my pattern a special way?</summary><p>No. Paste it the way you wrote it, one row or round per line. Sizes in brackets like "64 (72, 80)" are fine. Materials and notes are skipped.</p></details>
-    <details class="faq seam"><summary>Does it replace my tech editor?</summary><p>No. It only checks counts. Your editor also checks wording, charts, schematics and fit, and test knitters check how it actually knits up.</p></details>
-    <details class="faq seam"><summary>What does "not checked" mean?</summary><p>That line didn't have exact numbers, or was written in a way it couldn't read, like a chart or "work in pattern as established". It never guesses, so those lines are left for you.</p></details>
-    <details class="faq seam"><summary>Is my unreleased pattern safe?</summary><p>Nothing is stored. To keep it on your own computer entirely, run the open-source version with an open model, below.</p></details>
+    <h2>Questions</h2>
+    <details class="faq"><summary>Do I need to format my pattern a special way?</summary><p>No. Paste it the way you wrote it, one row or round per line. Sizes in brackets like "64 (72, 80)" are fine. Materials and notes are skipped.</p></details>
+    <details class="faq"><summary>Does it replace my tech editor?</summary><p>No. It only checks counts. Your editor also checks wording, charts, schematics and fit, and test knitters check how it actually knits up.</p></details>
+    <details class="faq"><summary>What does "not checked" mean?</summary><p>That line didn't have exact numbers, or was written in a way it couldn't read, like a chart or "work in pattern as established". It never guesses, so those lines are left for you.</p></details>
+    <details class="faq"><summary>Is my unreleased pattern safe?</summary><p>Nothing is stored. To keep it on your own computer entirely, run the open-source version with an open model, below.</p></details>
   </section>
 
   <section id="private" class="band">
-    <h2><span class="row-no">Row 8</span>Your unreleased pattern stays yours</h2>
+    <h2>Your unreleased pattern stays yours</h2>
     <p>The checker is open source and the model is open-weight, so you can run the whole thing on your own laptop. The pattern never leaves it.</p>
-    <pre class="seam"><code>ollama pull gemma4:e4b-it-q4_K_M
+    <pre class="sheet"><code>ollama pull gemma4:e4b-it-q4_K_M
 git clone https://github.com/Hotragn/stitch-math && cd stitch-math
 GEMMA_LOCAL=1 npm start</code></pre>
   </section>
 
   <section class="band limits">
-    <h2><span class="row-no">Bind off</span>What it can't check yet</h2>
+    <h2>What it can't check yet</h2>
     <ul>
       <li>Charts, and rows written as "work in pattern as established"</li>
       <li>"At the same time" shaping, and short rows</li>
@@ -174,6 +174,6 @@ GEMMA_LOCAL=1 npm start</code></pre>
 <footer>
   <p>Built for the DEV Hacktoberfest Open-Source AI Challenge. Runs on a free server that sleeps, so the first check after a quiet spell can take up to a minute.</p>
 </footer>
-<script src="/app.js" type="module"></script>
+<script src="/app.js?v=5" type="module"></script>
 </body>
 </html>

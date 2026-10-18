@@ -1,7 +1,7 @@
 ---
-title: "A first-pass tech edit for knitting designers: Gemma reads the rows, code counts the stitches"
+title: "Grade every size at once: a first-pass tech edit for knitting designers, where Gemma reads and code counts"
 published: false
-tags: devchallenge, hf26challenge, gemma, opensource
+tags: devchallenge, hf26challenge, gemma, knitting
 cover_image: https://stitch-math.onrender.com/og.png
 ---
 
@@ -11,14 +11,14 @@ cover_image: https://stitch-math.onrender.com/og.png
 
 In 2018 a knitter on the KnittingHelp forum reached Row 15 of a hat pattern they'd paid for, and [the stitches didn't add up](https://forum.knittinghelp.com/t/help-too-many-stitches/129362). They had 16 stitches after Row 13, and Row 15 left two over on every needle. They recounted. The designer was away for a week. Another member worked the numbers and agreed the pattern was wrong, and they signed off relieved: "it wasn't me."
 
-Designers who sell patterns pay to stop this happening. A **tech editor** reads every row and does the stitch math for every size before a pattern goes on sale:
+Knitting designers pay to stop this happening, and sizes make it worse: "Cast on 64 (72, 80, 88)" is four patterns in one, and a slip in one size is easy to miss. A **tech editor** reads every row and does the stitch math for every size before a pattern goes on sale:
 - One editor's [rate card](https://www.samlovesyarn.co.uk/services-7) says £30 an hour, at 30 minutes to 7 hours a pattern.
 - The designer Woolly Wormhead [puts tech editing at about £50 a pattern](https://woollywormhead.com/blog/2018/5/10/the-true-cost-of-a-pattern-revisited), on a pattern that sells for about £3.75. That's the biggest single cost on her list.
 - Ravelry [added 87,106 patterns in 2022](https://blog.ravelry.com/2022-community-stats/).
 
-I couldn't find a tool that checks a written pattern automatically. [Stitch Fiddle](https://www.stitchfiddle.com/en/help/1pem-8ycy8n) checks charts drawn in its own editor.
+[StitchProof](https://dev.to/heet_ranpura/i-stopped-asking-ai-to-count-now-it-catches-956-of-the-mistakes-in-crochet-patterns-on-a-laptop-1el0), another entry this week, checks crochet patterns and marks multi-size patterns as can't-check. Stitch Math is for knitting, and for grading many sizes at once.
 
-So I built **Stitch Math**, a first pass at the counting part of a tech edit:
+So I built **Stitch Math**, a first pass at the counting part of a tech edit, laid out as a grading sheet: rows down the side, sizes across the top, and a red cell wherever a count doesn't add up.
 
 1. **Gemma 4 reads each row** into stitch steps. "*K4, k2tog; rep from * around. 40 (45, 50, 55) sts." becomes *knit 4, knit 2 together, repeat to the end; the pattern promises 40, 45, 50 and 55*.
 2. **Plain code counts.** A stitch table knows what each stitch uses and makes (k2tog uses 2 and makes 1; yo makes 1). The checker carries the live count from row to row, for every size, and checks that every repeat fits.
@@ -44,7 +44,7 @@ Rnd 5: (3 sc, inc) x 6 (30)
 
 You get: *"The instructions make 24 sts; the pattern says 22. Every later round agrees with 24, so 22 looks like a typo. Change it to 24."*
 
-**[stitch-math.onrender.com](https://stitch-math.onrender.com)**. No sign-up. Tap a sample or paste any written pattern. It's on Render's free tier, so the first check after a quiet spell can take up to a minute while the server wakes.
+**[stitch-math.onrender.com](https://stitch-math.onrender.com)**. No sign-up. The 4-size hat sample is already checked when the page opens, so you see the size grid straight away; tap a red cell for the editor's note, or paste your own pattern. It's on Render's free tier, so the first check after a quiet spell can take up to a minute while the server wakes.
 
 The hat sample has two mistakes I put in:
 - The Adult S cast-on is 76, which an 8-stitch decrease can't divide. The checker works out that 80 would fit.
@@ -103,33 +103,21 @@ The patterns are mine, so I also tried seven free patterns from designers' sites
 - **"Ch 1, turn"** counted the turning chain as a stitch, so every crochet row came out one over. Conventions like that live in code, not the prompt.
 - **AI Studio's rate limit** killed my first eval run. The reader now waits as asked, falls back to Gemma 4 31B (a separate quota), and labels unread lines "the reader was busy" instead of blaming the pattern.
 
-### Tinker: a 4B reader for a designer's laptop
+### Render: one free web service
 
-For a designer who wants nothing to leave the laptop, I used Tinker to teach a small model the reading job.
-
-- [`ml/gen_lines.py`](https://github.com/Hotragn/stitch-math/blob/master/ml/gen_lines.py) writes 2,000 synthetic lines in many notations, each with its JSON answer. Code writes both halves, so every answer is exact.
-- A rank-32 LoRA on Qwen3.5-4B: 2 epochs, 551k tokens, about 8 minutes. That's about $0.41 at Tinker's listed $0.737 per million training tokens ([OMR](https://omr.com/en/reviews/product/tinker/pricing)).
-- It was trained only on synthetic lines. On the 112 lines of my 8 test patterns, 108 gave the same counts as Gemma 26B's verified reads (96%).
-- Reading every line of the 32-case eval, it let the checker catch **21 of 24** errors, with 1 false alarm on clean patterns and 4 extra flags on the error versions ([report](https://github.com/Hotragn/stitch-math/blob/master/evals/report-lora.md)).
-
-It isn't in the live app yet: the adapter lives on Tinker, and running it in Ollama means exporting it first.
-
-### Sentry: where a check's time goes
-
-Each check is one trace: a `gen_ai.invoke_agent` span, a `gen_ai.chat` span per Gemma read (model, tokens, attempt), and a `stitch.count` span. Spans carry counts and timings, never pattern text ([`src/trace.ts`](https://github.com/Hotragn/stitch-math/blob/master/src/trace.ts)). On the 4-size hat, reading took 22.3 s and counting 1.8 ms ([the log](https://github.com/Hotragn/stitch-math/blob/master/evals/timings.md)). All the waiting is reading, which is why the small reader matters.
+The whole app is one Node service on Render's free tier: the page, the check endpoint, and the calls to Gemma, with the API key kept on the server. The free tier sleeps when idle, so the server warms the samples on boot, which is why the 4-size hat appears already checked. On the 4-size hat, reading took 22.3 s and counting 1.8 ms ([the log](https://github.com/Hotragn/stitch-math/blob/master/evals/timings.md)), so all the waiting is the model reading.
 
 ## Why Does Open Innovation Matter?
 
 - **The price only works near $0.** On a paid open-model host, Gemma 4 26B A4B is [$0.07 per million input tokens and $0.34 per million output](https://openrouter.ai/models/google/gemma-4-26b-a4b-it-20260403). The 4-size hat (4,253 tokens in, 1,421 out) costs about $0.0008 to check, so a $5 check and a free tier both work on a £3.75 pattern.
-- **An unreleased pattern is the product.** With open weights, the whole app runs on a laptop (`GEMMA_LOCAL=1`, Ollama), and the pattern never leaves it. Honestly, the small Gemma 4 E4B reads 87 of the 112 test lines right (78%), against 96% for the Tinker 4B. The local path is real, and it's also why I trained the small reader.
+- **An unreleased pattern is the product.** With open weights, the whole app runs on a laptop (`GEMMA_LOCAL=1`, Ollama), and the pattern never leaves it. Honestly, the small Gemma 4 E4B that fits a laptop reads 87 of the 112 test lines right (78%), so the local path works but reads worse than the cloud model.
 - **No lock-in.** If AI Studio changes its free tier, the same prompt runs on any host that serves Gemma, or on the designer's own machine. The model, the stitch table and the checker are all open, so each piece can be swapped and tested on its own.
 
 **What it can't do yet:** charts, "work in pattern as established", "at the same time" shaping, short rows, and patterns that write each size as its own section. And it checks counts, not fit; that's what test knitters are for.
 
 ## Prize Categories
 
-- **Best Use of Gemma:** Gemma 4 only reads, and code counts: 22 of 24 seeded errors caught with 1 false alarm on clean patterns, where Gemma acting as the editor caught 18 and raised 17.
-- **Best Use of Tinker:** a $0.41 LoRA taught Qwen3.5-4B to read pattern lines from synthetic data alone: 108 of 112 lines right on patterns it never trained on, and 21 of 24 errors caught (1 false alarm) when it drives the whole checker.
-- **Best Use of Sentry Agent Tracing:** one trace per check, with each Gemma read as its own span. It shows reading at 22.3 s and counting at 1.8 ms, with no pattern text sent.
+- **Best Use of Gemma:** Gemma 4 only reads, and code counts: 22 of 24 seeded errors caught with 1 false alarm on clean patterns, where Gemma acting as the editor caught 18 and raised 17. The same prompts run on Gemma 4 E4B on a laptop.
+- **Best Use of Render:** the whole app is one free Render web service, with the Gemma key on the server and the samples warmed at boot so the size grid loads already checked.
 
 *How I used AI: I picked this idea from a research pass over this week's entries and public evidence of what people pay for, and directed the build. Claude Code wrote the code and drafted this post from the repo's results, and a separate fresh review session checked every number against the repo before I published. The sample and test patterns were written for this project.*
