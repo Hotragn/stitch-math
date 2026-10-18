@@ -18,7 +18,7 @@ Node 22.18 or newer (TypeScript runs directly, no build step). Deploy note: Rend
 
 ## Results
 
-- **Eval** (`evals/report.md`): 8 clean patterns + 24 copies with one seeded error each. Gemma reads + code counts caught 24 of 24, with 0 false alarms on the clean patterns. Gemma 4 acting as the editor alone caught 18, with 17 false alarms. A hand-written regex reader + code caught 6.
+- **Eval** (`evals/report.md`): 8 clean patterns + 24 copies with one seeded error each. Gemma reads + code counts caught 22 of 24, with 1 false alarm on the clean patterns. Gemma 4 acting as the editor alone caught 18, with 17 false alarms. A hand-written regex reader + code caught 6.
 - **Real patterns** (`evals/real-patterns.md`): seven free patterns by other designers, every flag checked by hand, including the two layouts it still gets wrong.
 - **Tinker** (`ml/`, `evals/report-lora.md`): a Qwen3.5-4B LoRA trained on 2,000 synthetic lines reads 108 of 112 real lines right and lets the checker catch 21 of 24.
 
