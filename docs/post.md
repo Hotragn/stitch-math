@@ -9,7 +9,7 @@ cover_image: https://stitch-math.onrender.com/og.png
 
 ## What I Built
 
-In 2018 a knitter on the KnittingHelp forum reached Row 15 of a hat pattern she'd paid for, and [the stitches didn't add up](https://forum.knittinghelp.com/t/help-too-many-stitches/129362). She had 16 stitches after Row 13, and Row 15 left two over on every needle. She recounted. The designer was away for a week. Another member worked the numbers and agreed the pattern was wrong, and she signed off relieved: "it wasn't me."
+In 2018 a knitter on the KnittingHelp forum reached Row 15 of a hat pattern they'd paid for, and [the stitches didn't add up](https://forum.knittinghelp.com/t/help-too-many-stitches/129362). They had 16 stitches after Row 13, and Row 15 left two over on every needle. They recounted. The designer was away for a week. Another member worked the numbers and agreed the pattern was wrong, and they signed off relieved: "it wasn't me."
 
 Designers who sell patterns pay to stop this happening. A **tech editor** reads every row and does the stitch math for every size before a pattern goes on sale:
 - One editor's [rate card](https://www.samlovesyarn.co.uk/services-7) says £30 an hour, at 30 minutes to 7 hours a pattern.
@@ -115,7 +115,7 @@ Each check is one trace: a `gen_ai.invoke_agent` span, a `gen_ai.chat` span per 
 ## Why Does Open Innovation Matter?
 
 - **The price only works near $0.** On a paid open-model host, Gemma 4 26B A4B is [$0.07 per million input tokens and $0.34 per million output](https://openrouter.ai/models/google/gemma-4-26b-a4b-it-20260403). The 4-size hat (4,253 tokens in, 1,421 out) costs about $0.0008 to check, so a $5 check and a free tier both work on a £3.75 pattern.
-- **An unreleased pattern is the product.** With open weights, the whole app runs on a laptop (`GEMMA_LOCAL=1`, Ollama), and the pattern never leaves it. Honestly, the small Gemma 4 E4B reads 87 of 112 real test lines right (78%), against 96% for the Tinker 4B. The local path is real, and it's also why I trained the small reader.
+- **An unreleased pattern is the product.** With open weights, the whole app runs on a laptop (`GEMMA_LOCAL=1`, Ollama), and the pattern never leaves it. Honestly, the small Gemma 4 E4B reads 87 of the 112 test lines right (78%), against 96% for the Tinker 4B. The local path is real, and it's also why I trained the small reader.
 - **No lock-in.** If AI Studio changes its free tier, the same prompt runs on any host that serves Gemma, or on the designer's own machine. The model, the stitch table and the checker are all open, so each piece can be swapped and tested on its own.
 
 **What it can't do yet:** charts, "work in pattern as established", "at the same time" shaping, short rows, and patterns that write each size as its own section. And it checks counts, not fit; that's what test knitters are for.
@@ -126,4 +126,4 @@ Each check is one trace: a `gen_ai.invoke_agent` span, a `gen_ai.chat` span per 
 - **Best Use of Tinker:** a $0.41 LoRA taught Qwen3.5-4B to read pattern lines from synthetic data alone: 108 of 112 lines right on patterns it never trained on, and 21 of 24 errors caught (1 false alarm) when it drives the whole checker.
 - **Best Use of Sentry Agent Tracing:** one trace per check, with each Gemma read as its own span. It shows reading at 22.3 s and counting at 1.8 ms, with no pattern text sent.
 
-*How I used AI: I picked this idea from a research pass over this week's entries and public evidence of what people pay for, and directed the build. Claude Code wrote the code and drafted this post from the repo's results, and I checked the claims against them. The sample and test patterns were written for this project.*
+*How I used AI: I picked this idea from a research pass over this week's entries and public evidence of what people pay for, and directed the build. Claude Code wrote the code and drafted this post from the repo's results, and a separate fresh review session checked every number against the repo before I published. The sample and test patterns were written for this project.*

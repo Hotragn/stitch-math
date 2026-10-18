@@ -3,7 +3,7 @@
 ## What shipped
 - **Live app:** https://stitch-math.onrender.com (Render free tier, service `srv-dba9hg7btjjs73eapub0`; the first load after idle can take ~1 min)
 - **Repo (public, MIT):** https://github.com/Hotragn/stitch-math
-- **Post:** staged as a DEV draft, NOT published (you didn't pre-approve publishing). Link: [[DRAFT_LINK]]
+- **Post:** staged as a DEV draft, NOT published (you didn't pre-approve publishing). Edit link: https://dev.to/hotragn/a-first-pass-tech-edit-for-knitting-designers-gemma-reads-the-rows-code-counts-the-stitches-2jp4-temp-slug-5916433/edit (article id 4872054; the draft URL looks odd until published, which is normal)
 
 ## The product in one line
 Paste a written knitting or crochet pattern. Gemma 4 reads each row into stitch steps, plain code counts every row for every size, and you get a tech editor's note for each count that doesn't add up.

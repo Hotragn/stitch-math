@@ -17,8 +17,8 @@ Heartbeat: session cron 0df69177 at :07/:27/:47 runs "continue the Week 2 plan f
 - [~] M4 Repo + Render deploy (live: https://stitch-math.onrender.com, repo public: https://github.com/Hotragn/stitch-math, Render srv-dba9hg7btjjs73eapub0); phone tests pending + phone / in-app browser tests
 - [x] M5 Tinker: Qwen3.5-4B LoRA r32 (tinker://dfa372e4-3fcc-5756-80fb-f0bfb950d37a:train:0/sampler_weights/stitch-reader-lora-v1), real lines 108/112, full checker 21/24 caught, 1 FA clean. ~$0.41 training per run (OMR rate), 2 runs small-parser fine-tune (stretch, measured or not claimed)
 - [x] M6 Sentry: spans verified exported (debug log); trace id + readMs/countMs logged per check (hat 22.3 s read / 1.8 ms count). No auth token, so no dashboard screenshot; that's optional for the founder tracing with proof
-- [ ] M7 Post (<=1,800 words, template headings) + cover from our UI, staged as a DEV draft
-- [ ] M8 Fresh-context judge review, fix blockers, secret scan, repo public, docs/REPORT.md
+- [x] M7 Post (<=1,800 words, template headings) + cover from our UI, staged as a DEV draft
+- [x] M8 Fresh-context judge review, fix blockers, secret scan, repo public, docs/REPORT.md
 
 ## Notes
 - Research is in docs/research/. Feasibility spikes are in docs/research/feasibility/.
@@ -43,3 +43,6 @@ Heartbeat: session cron 0df69177 at :07/:27/:47 runs "continue the Week 2 plan f
 - E4B frozen: 87/112 real lines (78%).
 - Post: docs/post.md, 1,756 readable words, all [[..]] filled, 20/20 links 200, privacy scan clean.
 - Running: lean judge review (sonnet). Then fix blockers, stage the DEV draft via DevRelay create_article published:false, fill the REPORT.md draft link, commit post.md.
+
+## Oct 18 ~13:30 UTC: DONE except the founder's publish
+- Judge review (sonnet): no false numbers; risks fixed. DEV draft 4872054 staged (published:false, some_ai, cover og.png). The founder publishes by 04:59 UTC Oct 19. Don't edit the post after the deadline.
