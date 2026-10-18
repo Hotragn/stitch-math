@@ -7,7 +7,21 @@ import type { Craft, Custom } from "../engine/stitches.ts";
 import { norm } from "../engine/stitches.ts";
 import { span } from "../trace.ts";
 
-const MODEL = process.env.GEMMA_MODEL ?? "gemma-4-26b-a4b-it";
+const LOCAL = process.env.GEMMA_LOCAL === "1";
+const MODEL = LOCAL ? (process.env.OLLAMA_MODEL ?? "gemma4:e4b-it-q4_K_M") : (process.env.GEMMA_MODEL ?? "gemma-4-26b-a4b-it");
+const OLLAMA = process.env.OLLAMA_URL ?? "http://localhost:11434";
+
+// Local mode: the same prompt to Gemma 4 on your own machine through Ollama. Nothing leaves it.
+async function callLocal(prompt: string, usage: Usage): Promise<string> {
+  const res = await fetch(`${OLLAMA}/api/chat`, {
+    method: "POST", headers: { "content-type": "application/json" }, signal: AbortSignal.timeout(300_000),
+    body: JSON.stringify({ model: MODEL, stream: false, format: "json", think: false, options: { temperature: 0 }, messages: [{ role: "user", content: prompt }] }),
+  });
+  if (!res.ok) throw Object.assign(new Error(`Ollama HTTP ${res.status}`), { status: res.status });
+  const j: any = await res.json();
+  usage.inTokens += j.prompt_eval_count ?? 0; usage.outTokens += j.eval_count ?? 0;
+  return j.message?.content ?? "";
+}
 const CHUNK = 10;
 
 export type Usage = { calls: number; inTokens: number; outTokens: number; ms: number; cached: number; retries: number };
@@ -63,7 +77,7 @@ async function callGemma(prompt: string, usage: Usage, label: string): Promise<u
   const k = key(prompt);
   if (cache.has(k)) { usage.cached++; return cache.get(k); }
   const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) throw new Error("GEMINI_API_KEY is not set");
+  if (!apiKey && !LOCAL) throw new Error("GEMINI_API_KEY is not set");
   const body = {
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     generationConfig: { thinkingConfig: { thinkingLevel: "minimal" }, temperature: 0, responseMimeType: "application/json", maxOutputTokens: 4096 },
@@ -72,9 +86,10 @@ async function callGemma(prompt: string, usage: Usage, label: string): Promise<u
   for (let attempt = 0; attempt < 3; attempt++) {
     const t0 = Date.now();
     try {
-      const out = await span("gen_ai.chat", `chat ${MODEL}`, { "gen_ai.request.model": MODEL, "gen_ai.system": "google_ai_studio", "stitch.chunk": label, "stitch.attempt": attempt }, async (sp) => {
+      const out = await span("gen_ai.chat", `chat ${MODEL}`, { "gen_ai.request.model": MODEL, "gen_ai.system": LOCAL ? "ollama" : "google_ai_studio", "stitch.chunk": label, "stitch.attempt": attempt }, async (sp) => {
+        if (LOCAL) { const t = await callLocal(prompt, usage); return JSON.parse(t.trim().replace(/^```(?:json)?/, "").replace(/```$/, "").trim()); }
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
-          method: "POST", headers: { "x-goog-api-key": apiKey, "content-type": "application/json" },
+          method: "POST", headers: { "x-goog-api-key": apiKey!, "content-type": "application/json" },
           body: JSON.stringify(body), signal: AbortSignal.timeout(90_000),
         });
         if (!res.ok) throw Object.assign(new Error(`Gemma HTTP ${res.status}`), { status: res.status });

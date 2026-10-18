@@ -173,9 +173,10 @@ export function check(p: Parsed): Report {
           cell.after = n;
         }
         if (cell.status === "unchecked") cell.status = "ok";
-        if (stated != null && cell.after != null && stated !== cell.after && cell.status !== "warn") {
+        const reptWarn = cell.status === "warn" && cell.msg?.startsWith("the stated");
+        if (stated != null && cell.after != null && stated !== cell.after && !reptWarn) {
+          cell.msg = `the instructions make ${cell.after} sts; the pattern says ${stated}` + (cell.status === "warn" && cell.msg ? ` (and ${cell.msg})` : "");
           cell.status = "error";
-          cell.msg = `the instructions make ${cell.after} sts; the pattern says ${stated}`;
         }
       } catch (e) {
         if (!(e instanceof CheckError)) throw e;
