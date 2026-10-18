@@ -15,7 +15,7 @@ export type Usage = { calls: number; inTokens: number; outTokens: number; ms: nu
 const RULES = `You read knitting and crochet patterns and turn each numbered line into JSON. You are a careful reader, not an editor.
 NEVER count stitches, NEVER fix the pattern, NEVER change a number. Copy every number exactly as written, even if it looks wrong.
 
-Per line, output one object with "i" (the line number given) and "k" (kind):
+Each line starts with an id like [L12]. Per line, output one object with "i" (the number from that id, e.g. 12; not the row or round number) and "k" (kind):
 - "row": a row or round worked. Fields:
   "o": the row's stitches in order, as a list of items:
      ["st", n]       stitch st worked n times, into n stitches ("sc in next 3" -> ["sc",3]; "k2" -> ["k",2]; "k2tog" -> ["k2tog",1])
@@ -29,10 +29,13 @@ Per line, output one object with "i" (the line number given) and "k" (kind):
 - "note": headings, materials, gauge, finishing, assembly, anything that is not a row.
 - "skip": a row you cannot express this way (charts, "work in pattern as established", "at the same time", short rows, unclear text). Add "why" in under 8 words.
 
-Examples:
+Examples (the [L..] id is the "i"):
 "Rnd 3: (sc, inc) x 6 (18)" -> {"i":4,"k":"row","o":[{"o":[["sc",1],["inc",1]],"t":6}],"s":18}
 "Row 5 (RS): K3, *yo, k2tog; rep from * to last 3 sts, k3." -> {"i":5,"k":"row","o":[["k",3],{"o":[["yo",1],["k2tog",1]],"r":1},["k",3]]}
 "Row 6: K3, purl to last 3 sts, k3." -> {"i":8,"k":"row","o":[["k",3],{"o":[["p",1]],"r":1},["k",3]]}  ("purl to last N", "knit to end", "sc across" are always open repeats)
+"Rows 3-100: repeat Row 2." -> {"k":"repeat","f":2,"to":2,"t":98}
+"Knit, increasing 2 (0, 2) sts evenly." -> {"k":"row","o":[{"o":[["k",1]],"r":1},["m1",[2,0,2]]]}
+"sc evenly around" or any row with no exact stitch numbers -> {"k":"skip","why":"no exact counts"}
 "Rnds 12-40 (12-44, 12-48): Knit." -> {"i":6,"k":"row","x":[29,33,37],"o":[{"o":[["k",1]],"r":1}]}
 "Rnd 1: *K6, k2tog; rep from * around. 56 (63, 70) sts." -> {"i":7,"k":"row","o":[{"o":[["k",6],["k2tog",1]],"r":1}],"s":[56,63,70]}
 
@@ -48,7 +51,7 @@ const META = `Also return top-level fields:
 "custom": special stitches the pattern defines with a stitch effect, as {"name": [stitches used, stitches made]}, e.g. "CDD: sl2, k1, p2sso (2 sts decreased)" -> {"cdd":[3,1]}. {} if none.`;
 
 function linesBlock(text: string[], idx: number[]): string {
-  return idx.map((i) => `${i}: ${text[i]}`).join("\n");
+  return idx.map((i) => `[L${i}] ${text[i]}`).join("\n");
 }
 
 type Meta = { craft: Craft; sizes: string[]; custom: Custom };
@@ -190,12 +193,18 @@ export async function readPattern(pattern: string): Promise<{ parsed: Parsed; us
   for (let s = 0; s < all.length; s += CHUNK) chunks.push(all.slice(s, s + CHUNK));
   const lines = new Map<number, Line>();
   await Promise.all(chunks.map(async (idx, c) => {
-    const ask = (ids: number[]) => callGemma(`${RULES}\n\n${ctx}\nReturn {"lines":[...]} with exactly one object for each line number below.\n\nLines:\n${linesBlock(text, ids)}`, usage, `chunk ${c}`);
+    const ask = (ids: number[]) => callGemma(`${RULES}\n\n${ctx}\nReturn {"lines":[...]} with exactly one object for each [L..] id below, using that id's number as "i".\n\nLines:\n${linesBlock(text, ids)}`, usage, `chunk ${c}`);
     let raw: any = await ask(idx).catch(() => null);
-    const got = (r: any) => { for (const l of Array.isArray(r?.lines) ? r.lines : []) { const L = toLine(l); if (L && idx.includes(L.i) && !lines.has(L.i)) lines.set(L.i, L); } };
-    got(raw);
+    // Ids from the model are a hint. If it answered one object per line sent, trust the order instead.
+    const got = (r: any, sent: number[]) => {
+      const list: any[] = Array.isArray(r?.lines) ? r.lines : [];
+      const idsOk = list.every((l) => sent.includes(l?.i));
+      const use = !idsOk && list.length === sent.length ? list.map((l, k) => ({ ...l, i: sent[k] })) : list;
+      for (const l of use) { const L = toLine(l); if (L && sent.includes(L.i) && !lines.has(L.i)) lines.set(L.i, L); }
+    };
+    got(raw, idx);
     const missing = idx.filter((i) => !lines.has(i));
-    if (missing.length) got(await ask(missing).catch(() => null)); // one re-ask for lines that failed the shape check
+    if (missing.length) got(await ask(missing).catch(() => null), missing); // one re-ask for lines that failed the shape check
   }));
 
   const out: Line[] = all.map((i) => lines.get(i) ?? { i, kind: "unsupported", why: "the reader's answer for this line didn't pass the shape check" });

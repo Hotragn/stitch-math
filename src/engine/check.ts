@@ -32,9 +32,15 @@ const at = (n: Num | null | undefined, s: number): number | null =>
   n == null ? null : Array.isArray(n) ? (n[s] ?? null) : n;
 
 // One pass of a list of ops for size s: [stitches used, stitches made].
+const isTurn = (op: Op | undefined) => !!op && "st" in op && /^(turn|donotturn|dontturn)$/.test(op.st.toLowerCase().replace(/[^a-z]/g, ""));
+
 function opsCost(ops: Op[], craft: Craft, custom: Custom, s: number): [number, number] {
   let u = 0, m = 0;
-  for (const op of ops) {
+  for (let k = 0; k < ops.length; k++) {
+    const op = ops[k];
+    // Crochet convention: "ch 1, turn" (or "ch 1, do not turn") at a row edge is a turning chain, not a stitch.
+    if (craft === "crochet" && "st" in op && /^ch(ain)?$/i.test(op.st) && (isTurn(ops[k + 1]) || isTurn(ops[k - 1]))) continue;
+    if (isTurn(op)) continue;
     if ("group" in op) {
       const t = at(op.times, s);
       if (t == null || t < 0) throw new CheckError("unreadable", "a nested repeat has no count");

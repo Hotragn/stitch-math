@@ -1,0 +1,20 @@
+Bear Head
+Crochet, US terms, worked in continuous rounds. 3.5 mm hook.
+Rnd 1: 6 sc in magic ring (6)
+Rnd 2: inc in each st around (12)
+Rnd 3: (sc, inc) x 6 (18)
+Rnd 4: sc, inc, (sc 2, inc) x 5, sc 1 (24)
+Rnd 5: (sc 3, inc) x 6 (30)
+Rnd 6: sc 2, inc, (sc 4, inc) x 5, sc 2 (36)
+Rnd 7: (sc 5, inc) x 6 (42)
+Rnd 8: sc 3, inc, (sc 6, inc) x 5, sc 3 (48)
+Rnds 9-16: sc around (48)
+Rnd 17: sc 3, dec, (sc 6, dec) x 5, sc 3 (42)
+Rnd 18: (sc 5, dec) x 6 (36)
+Rnd 19: sc 2, dec, (sc 4, dec) x 5, sc 2 (30)
+Rnd 20: (sc 3, dec) x 6 (24)
+Stuff firmly.
+Rnd 21: sc, dec, (sc 2, dec) x 5, sc 1 (18)
+Rnd 22: (sc, dec) x 6 (12)
+Rnd 23: dec x 6 (6)
+Fasten off.

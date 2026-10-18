@@ -17,3 +17,6 @@ What the notary lane does better: a bigger money story, privacy that's truly req
 
 ## D2. Flare keep-awake (Oct 18, ~08:45 UTC). Founder approved (c)
 Disabled with `gh workflow disable 381946255 -R Hotragn/flare` (workflow "Keep the live app awake", now `disabled_manually`). No commit. Undo: `gh workflow enable 381946255 -R Hotragn/flare`.
+
+## D3. Repo made public early (Oct 18, ~10:25 UTC). Founder approved (d) after a secret scan
+Render's GitHub app couldn't see the private repo, so the service couldn't be created. The secret scan was clean (key patterns, the actual Gemini key value, emails), so I made the repo public now instead of at the end. Every push is rescanned first.
