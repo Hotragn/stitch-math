@@ -78,7 +78,9 @@ export function rowAfter(groups: Group[], craft: Craft, custom: Custom, s: numbe
     if (left < 0) throw new CheckError("too-few", `the row needs at least ${fixedUse} sts, but there are ${before}`);
     if (left % open.use !== 0) {
       throw new CheckError("repeat-fit",
-        `the repeat uses ${open.use} sts, but ${left} sts are left for it (${before}${fixedUse ? ` − ${fixedUse}` : ""}), and ${left} isn't a multiple of ${open.use}`);
+        fixedUse
+        ? `the repeat uses ${open.use} sts, but ${left} sts are left for it (${before} − ${fixedUse}), and ${left} isn't a multiple of ${open.use}`
+        : `the repeat uses ${open.use} sts, but there are ${before} sts, and ${before} isn't a multiple of ${open.use}`);
     }
     return { after: fixedMake + (left / open.use) * open.make };
   }

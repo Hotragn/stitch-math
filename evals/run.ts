@@ -1,6 +1,6 @@
 // node evals/run.ts  -> runs 3 systems on 8 clean patterns + 24 single-error versions
 // and writes evals/results.json and evals/report.md
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { readPattern, splitLines } from "../src/parse/gemma.ts";
 import { readRegex } from "../src/parse/regex.ts";
 import { check } from "../src/engine/check.ts";
@@ -40,8 +40,10 @@ ${lines.map((l, i) => `[L${i}] ${l}`).join("\n")}`;
 const flagged = (r: ReturnType<typeof check>) => [...new Set(r.findings.map((f) => f.i))];
 
 type Row = { id: string; kind: string; line: number | null; system: string; flags: number[]; checked?: number; total?: number; ms: number };
-const out: Row[] = [];
+const out: Row[] = existsSync("evals/results.json") ? JSON.parse(readFileSync("evals/results.json", "utf8")) : [];
 async function one(c: Case) {
+  if (out.filter((r) => r.id === c.id).length === 3) return;
+  for (let k = out.length - 1; k >= 0; k--) if (out[k].id === c.id) out.splice(k, 1);
   let t = Date.now();
   const rx = check(readRegex(c.text));
   out.push({ id: c.id, kind: c.kind, line: c.line, system: "regex reader + code", flags: flagged(rx), checked: rx.checked, total: rx.total, ms: Date.now() - t });
@@ -51,11 +53,12 @@ async function one(c: Case) {
   out.push({ id: c.id, kind: c.kind, line: c.line, system: "Gemma reader + code", flags: flagged(ours), checked: ours.checked, total: ours.total, ms: Date.now() - t });
   t = Date.now();
   out.push({ id: c.id, kind: c.kind, line: c.line, system: "Gemma alone", flags: await judgeAlone(c.text), ms: Date.now() - t });
+  writeFileSync("evals/results.json", JSON.stringify(out, null, 1));
   process.stdout.write(".");
 }
 
 const queue = [...cases];
-await Promise.all(Array.from({ length: 3 }, async () => { while (queue.length) await one(queue.shift()!); }));
+await Promise.all(Array.from({ length: Number(process.env.EVAL_WORKERS ?? 1) }, async () => { while (queue.length) await one(queue.shift()!); }));
 writeFileSync("evals/results.json", JSON.stringify(out, null, 1));
 
 // Scoring: a seeded error is caught if a flag lands on its line or up to 3 lines after it

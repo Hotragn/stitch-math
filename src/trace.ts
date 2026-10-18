@@ -12,6 +12,7 @@ export async function initTracing(): Promise<boolean> {
       dsn: process.env.SENTRY_DSN,
       tracesSampleRate: 1.0,
       sendDefaultPii: false,
+      debug: process.env.SENTRY_DEBUG === "1",
       environment: process.env.RENDER ? "production" : "local",
       beforeSendTransaction(ev: any) { delete ev.request?.data; return ev; },
     });

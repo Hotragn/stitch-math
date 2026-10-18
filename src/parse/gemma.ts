@@ -9,6 +9,8 @@ import { span } from "../trace.ts";
 
 const LOCAL = process.env.GEMMA_LOCAL === "1";
 const MODEL = LOCAL ? (process.env.OLLAMA_MODEL ?? "gemma4:e4b-it-q4_K_M") : (process.env.GEMMA_MODEL ?? "gemma-4-26b-a4b-it");
+// AI Studio rate-limits each model separately, so a busy minute falls back to the larger Gemma 4.
+const FALLBACK = process.env.GEMMA_FALLBACK ?? "gemma-4-31b-it";
 const OLLAMA = process.env.OLLAMA_URL ?? "http://localhost:11434";
 
 // Local mode: the same prompt to Gemma 4 on your own machine through Ollama. Nothing leaves it.
@@ -83,16 +85,21 @@ async function callGemma(prompt: string, usage: Usage, label: string): Promise<u
     generationConfig: { thinkingConfig: { thinkingLevel: "minimal" }, temperature: 0, responseMimeType: "application/json", maxOutputTokens: 4096 },
   };
   let lastErr: unknown;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let attempt = 0; attempt < 5; attempt++) {
     const t0 = Date.now();
+    const model = !LOCAL && attempt >= 2 && attempt % 2 === 0 ? FALLBACK : MODEL;
     try {
-      const out = await span("gen_ai.chat", `chat ${MODEL}`, { "gen_ai.request.model": MODEL, "gen_ai.system": LOCAL ? "ollama" : "google_ai_studio", "stitch.chunk": label, "stitch.attempt": attempt }, async (sp) => {
+      const out = await span("gen_ai.chat", `chat ${model}`, { "gen_ai.request.model": model, "gen_ai.system": LOCAL ? "ollama" : "google_ai_studio", "stitch.chunk": label, "stitch.attempt": attempt }, async (sp) => {
         if (LOCAL) { const t = await callLocal(prompt, usage); return JSON.parse(t.trim().replace(/^```(?:json)?/, "").replace(/```$/, "").trim()); }
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
           method: "POST", headers: { "x-goog-api-key": apiKey!, "content-type": "application/json" },
           body: JSON.stringify(body), signal: AbortSignal.timeout(90_000),
         });
-        if (!res.ok) throw Object.assign(new Error(`Gemma HTTP ${res.status}`), { status: res.status });
+        if (!res.ok) {
+          const err: any = await res.json().catch(() => ({}));
+          const delay = err?.error?.details?.find((d: any) => d.retryDelay)?.retryDelay;
+          throw Object.assign(new Error(`Gemma HTTP ${res.status}`), { status: res.status, retryMs: delay ? parseFloat(delay) * 1000 : undefined });
+        }
         const j: any = await res.json();
         const parts = j.candidates?.[0]?.content?.parts ?? [];
         const txt = parts.filter((p: any) => !p.thought).map((p: any) => p.text ?? "").join("");
@@ -108,7 +115,7 @@ async function callGemma(prompt: string, usage: Usage, label: string): Promise<u
       return out;
     } catch (e: any) {
       lastErr = e; usage.retries++;
-      const wait = e?.status === 429 ? 4000 * (attempt + 1) : 800 * (attempt + 1);
+      const wait = e?.status === 429 ? Math.min(e.retryMs ?? 6000 * (attempt + 1), 20_000) : 800 * (attempt + 1);
       await new Promise((r) => setTimeout(r, wait));
     }
   }
@@ -200,8 +207,8 @@ export async function readPattern(pattern: string): Promise<{ parsed: Parsed; us
 
   // Meta first, from the lines that mention sizes or special stitches, plus the start.
   const metaIdx = [...new Set([...all.slice(0, 25), ...all.filter((i) => /size|special|abbrev|stitch(es)? used|cdd|=|:/i.test(text[i]) && i < 80)])].slice(0, 45).sort((a, b) => a - b);
-  const metaRaw = await callGemma(`${META}\nReturn only {"craft":..,"sizes":..,"custom":..}.\n\nPattern lines:\n${linesBlock(text, metaIdx)}`, usage, "meta");
-  const meta = toMeta(metaRaw);
+  const metaRaw = await callGemma(`${META}\nReturn only {"craft":..,"sizes":..,"custom":..}.\n\nPattern lines:\n${linesBlock(text, metaIdx)}`, usage, "meta").catch(() => null);
+  const meta = toMeta(metaRaw ?? { craft: /\b(sc|hdc|dc|crochet|hook|magic ring)\b/i.test(pattern) ? "crochet" : "knit", sizes: [] });
   const ctx = `Pattern craft: ${meta.craft}. Sizes in order: ${meta.sizes.length ? meta.sizes.join(", ") : "one size"}.`;
 
   const chunks: number[][] = [];

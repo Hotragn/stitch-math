@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Stitch Math cover</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<style>
+  :root { color-scheme: light; --bg:#f7f3ec; --card:#fffdf9; --ink:#1f1a14; --muted:#6b6257; --line:#e6ddd0; --accent:#8a3b4f; --ok:#2f7a55; --ok-bg:#e5f2ea; --err:#b42c2c; --err-bg:#fbe7e4; }
+  body { width: 1000px; height: 420px; margin: 0; overflow: hidden; background: var(--bg); display: grid; grid-template-columns: 430px 1fr; gap: 26px; padding: 34px 38px; box-sizing: border-box; }
+  .left h1 { font-size: 46px; margin: 10px 0 14px; }
+  .left p { color: var(--muted); font-size: 17px; margin: 0; }
+  .brand { font-size: 22px; }
+  .tag { margin-top: 22px; display: inline-block; font: 600 13px var(--sans); color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 5px 12px; }
+  .findings { margin: 0; }
+  .finding { padding: 11px 14px; font-size: 14.5px; }
+  .finding .row-text { font-size: 12px; margin: 2px 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .finding .fix { margin-top: 4px; }
+  .findings { gap: 10px; }
+  .summary strong { font-size: 22px; }
+</style></head>
+<body>
+  <div class="left">
+    <div class="brand"><svg width="24" height="24" viewBox="0 0 24 24" style="color:var(--accent)"><use href="/icon.svg#mark"/></svg> Stitch Math</div>
+    <h1>Gemma reads the pattern. Code counts the stitches.</h1>
+    <p>A first-pass tech edit for knit and crochet designers, in every size.</p>
+    <span class="tag">Built on Gemma 4 · open source</span>
+  </div>
+  <div><div class="summary" id="summary"></div><ol class="findings" id="findings"></ol></div>
+<script type="module">
+  const s = await fetch("/api/samples").then((r) => r.json());
+  const out = await fetch("/api/check", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ pattern: s.hat }) }).then((r) => r.json());
+  const r = out.report, by = new Map(r.lines.map((l) => [l.i, l]));
+  document.querySelector("#summary").innerHTML = `<strong>${r.findings.length} problems found</strong><span class="meta">${r.checked} of ${r.total} rows checked · ${r.sizes.length} sizes</span>`;
+  document.querySelector("#findings").innerHTML = r.findings.map((f) => { const l = by.get(f.i); return `<li class="finding"><div class="where">${l.label} <span>· ${r.sizes[f.size]}</span></div><div class="row-text">${l.text}</div><div>${f.msg}</div><p class="fix">${f.fix ?? ""}</p></li>`; }).join("");
+  document.body.dataset.ready = "1";
+</script>
+</body></html>

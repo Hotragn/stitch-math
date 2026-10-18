@@ -1,0 +1,1062 @@
+[
+ {
+  "id": "ball/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 10,
+  "total": 10,
+  "ms": 1
+ },
+ {
+  "id": "ball/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 10,
+  "total": 10,
+  "ms": 17303
+ },
+ {
+  "id": "ball/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 681
+ },
+ {
+  "id": "bear-head/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 16,
+  "total": 16,
+  "ms": 1
+ },
+ {
+  "id": "bear-head/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 15,
+  "total": 16,
+  "ms": 20095
+ },
+ {
+  "id": "bear-head/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 603
+ },
+ {
+  "id": "blanket/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 1,
+  "total": 5,
+  "ms": 0
+ },
+ {
+  "id": "blanket/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 4,
+  "total": 5,
+  "ms": 14859
+ },
+ {
+  "id": "blanket/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 587
+ },
+ {
+  "id": "cowl/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 1
+ },
+ {
+  "id": "cowl/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 9,
+  "total": 9,
+  "ms": 16848
+ },
+ {
+  "id": "cowl/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6
+  ],
+  "ms": 2613
+ },
+ {
+  "id": "hat/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 14,
+  "ms": 1
+ },
+ {
+  "id": "hat/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 14,
+  "total": 14,
+  "ms": 20770
+ },
+ {
+  "id": "hat/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [
+   9,
+   11,
+   13,
+   15,
+   16,
+   17,
+   18
+  ],
+  "ms": 7050
+ },
+ {
+  "id": "mittens/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 3,
+  "total": 13,
+  "ms": 1
+ },
+ {
+  "id": "mittens/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 13,
+  "total": 13,
+  "ms": 18075
+ },
+ {
+  "id": "mittens/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   14
+  ],
+  "ms": 3863
+ },
+ {
+  "id": "scarf/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 1
+ },
+ {
+  "id": "scarf/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 9,
+  "total": 9,
+  "ms": 16279
+ },
+ {
+  "id": "scarf/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6
+  ],
+  "ms": 8425
+ },
+ {
+  "id": "yoke/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 9,
+  "ms": 0
+ },
+ {
+  "id": "yoke/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma reader + code",
+  "flags": [],
+  "checked": 9,
+  "total": 9,
+  "ms": 17498
+ },
+ {
+  "id": "yoke/clean",
+  "kind": "clean",
+  "line": null,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6,
+   8,
+   10
+  ],
+  "ms": 9295
+ },
+ {
+  "id": "hat/m0",
+  "kind": "stated count typo",
+  "line": 9,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 14,
+  "ms": 1
+ },
+ {
+  "id": "hat/m0",
+  "kind": "stated count typo",
+  "line": 9,
+  "system": "Gemma reader + code",
+  "flags": [
+   9
+  ],
+  "checked": 14,
+  "total": 14,
+  "ms": 12110
+ },
+ {
+  "id": "hat/m0",
+  "kind": "stated count typo",
+  "line": 9,
+  "system": "Gemma alone",
+  "flags": [
+   9,
+   11,
+   13,
+   15,
+   16,
+   17,
+   18
+  ],
+  "ms": 15533
+ },
+ {
+  "id": "hat/m1",
+  "kind": "wrong instruction",
+  "line": 13,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 14,
+  "ms": 0
+ },
+ {
+  "id": "hat/m1",
+  "kind": "wrong instruction",
+  "line": 13,
+  "system": "Gemma reader + code",
+  "flags": [
+   13
+  ],
+  "checked": 14,
+  "total": 14,
+  "ms": 20936
+ },
+ {
+  "id": "hat/m1",
+  "kind": "wrong instruction",
+  "line": 13,
+  "system": "Gemma alone",
+  "flags": [
+   9,
+   11,
+   13,
+   15,
+   17,
+   18
+  ],
+  "ms": 19746
+ },
+ {
+  "id": "hat/m2",
+  "kind": "cast-on doesn't fit",
+  "line": 4,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 14,
+  "ms": 1
+ },
+ {
+  "id": "hat/m2",
+  "kind": "cast-on doesn't fit",
+  "line": 4,
+  "system": "Gemma reader + code",
+  "flags": [
+   5
+  ],
+  "checked": 11,
+  "total": 14,
+  "ms": 33322
+ },
+ {
+  "id": "hat/m2",
+  "kind": "cast-on doesn't fit",
+  "line": 4,
+  "system": "Gemma alone",
+  "flags": [
+   9,
+   11,
+   13,
+   15,
+   16,
+   17,
+   18
+  ],
+  "ms": 6828
+ },
+ {
+  "id": "ball/m3",
+  "kind": "stated count typo",
+  "line": 5,
+  "system": "regex reader + code",
+  "flags": [
+   5
+  ],
+  "checked": 10,
+  "total": 10,
+  "ms": 1
+ },
+ {
+  "id": "ball/m3",
+  "kind": "stated count typo",
+  "line": 5,
+  "system": "Gemma reader + code",
+  "flags": [
+   5
+  ],
+  "checked": 10,
+  "total": 10,
+  "ms": 18238
+ },
+ {
+  "id": "ball/m3",
+  "kind": "stated count typo",
+  "line": 5,
+  "system": "Gemma alone",
+  "flags": [
+   5
+  ],
+  "ms": 3423
+ },
+ {
+  "id": "ball/m4",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "regex reader + code",
+  "flags": [
+   4
+  ],
+  "checked": 10,
+  "total": 10,
+  "ms": 1
+ },
+ {
+  "id": "ball/m4",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "Gemma reader + code",
+  "flags": [
+   4
+  ],
+  "checked": 10,
+  "total": 10,
+  "ms": 37238
+ },
+ {
+  "id": "ball/m4",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 621
+ },
+ {
+  "id": "ball/m5",
+  "kind": "wrong instruction",
+  "line": 11,
+  "system": "regex reader + code",
+  "flags": [
+   11
+  ],
+  "checked": 10,
+  "total": 10,
+  "ms": 1
+ },
+ {
+  "id": "ball/m5",
+  "kind": "wrong instruction",
+  "line": 11,
+  "system": "Gemma reader + code",
+  "flags": [
+   11
+  ],
+  "checked": 10,
+  "total": 10,
+  "ms": 5712
+ },
+ {
+  "id": "ball/m5",
+  "kind": "wrong instruction",
+  "line": 11,
+  "system": "Gemma alone",
+  "flags": [
+   11
+  ],
+  "ms": 6879
+ },
+ {
+  "id": "bear-head/m6",
+  "kind": "wrong instruction",
+  "line": 7,
+  "system": "regex reader + code",
+  "flags": [
+   7
+  ],
+  "checked": 16,
+  "total": 16,
+  "ms": 0
+ },
+ {
+  "id": "bear-head/m6",
+  "kind": "wrong instruction",
+  "line": 7,
+  "system": "Gemma reader + code",
+  "flags": [
+   7
+  ],
+  "checked": 16,
+  "total": 16,
+  "ms": 22340
+ },
+ {
+  "id": "bear-head/m6",
+  "kind": "wrong instruction",
+  "line": 7,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 618
+ },
+ {
+  "id": "bear-head/m7",
+  "kind": "stated count typo",
+  "line": 12,
+  "system": "regex reader + code",
+  "flags": [
+   12
+  ],
+  "checked": 16,
+  "total": 16,
+  "ms": 0
+ },
+ {
+  "id": "bear-head/m7",
+  "kind": "stated count typo",
+  "line": 12,
+  "system": "Gemma reader + code",
+  "flags": [
+   12
+  ],
+  "checked": 15,
+  "total": 16,
+  "ms": 21461
+ },
+ {
+  "id": "bear-head/m7",
+  "kind": "stated count typo",
+  "line": 12,
+  "system": "Gemma alone",
+  "flags": [
+   12
+  ],
+  "ms": 1843
+ },
+ {
+  "id": "bear-head/m8",
+  "kind": "stated count typo",
+  "line": 10,
+  "system": "regex reader + code",
+  "flags": [
+   10
+  ],
+  "checked": 16,
+  "total": 16,
+  "ms": 1
+ },
+ {
+  "id": "bear-head/m8",
+  "kind": "stated count typo",
+  "line": 10,
+  "system": "Gemma reader + code",
+  "flags": [
+   10
+  ],
+  "checked": 15,
+  "total": 16,
+  "ms": 20378
+ },
+ {
+  "id": "bear-head/m8",
+  "kind": "stated count typo",
+  "line": 10,
+  "system": "Gemma alone",
+  "flags": [
+   10
+  ],
+  "ms": 1626
+ },
+ {
+  "id": "mittens/m9",
+  "kind": "stated count typo",
+  "line": 9,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 3,
+  "total": 13,
+  "ms": 1
+ },
+ {
+  "id": "mittens/m9",
+  "kind": "stated count typo",
+  "line": 9,
+  "system": "Gemma reader + code",
+  "flags": [
+   9
+  ],
+  "checked": 13,
+  "total": 13,
+  "ms": 15664
+ },
+ {
+  "id": "mittens/m9",
+  "kind": "stated count typo",
+  "line": 9,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   7,
+   8,
+   9,
+   10,
+   11,
+   14,
+   16
+  ],
+  "ms": 13530
+ },
+ {
+  "id": "mittens/m10",
+  "kind": "wrong instruction",
+  "line": 11,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 3,
+  "total": 13,
+  "ms": 1
+ },
+ {
+  "id": "mittens/m10",
+  "kind": "wrong instruction",
+  "line": 11,
+  "system": "Gemma reader + code",
+  "flags": [
+   11
+  ],
+  "checked": 13,
+  "total": 13,
+  "ms": 14970
+ },
+ {
+  "id": "mittens/m10",
+  "kind": "wrong instruction",
+  "line": 11,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   14
+  ],
+  "ms": 3832
+ },
+ {
+  "id": "mittens/m11",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 3,
+  "total": 13,
+  "ms": 0
+ },
+ {
+  "id": "mittens/m11",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma reader + code",
+  "flags": [
+   3
+  ],
+  "checked": 12,
+  "total": 13,
+  "ms": 18152
+ },
+ {
+  "id": "mittens/m11",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   14
+  ],
+  "ms": 4292
+ },
+ {
+  "id": "cowl/m12",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 1
+ },
+ {
+  "id": "cowl/m12",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "Gemma reader + code",
+  "flags": [
+   4,
+   8
+  ],
+  "checked": 7,
+  "total": 9,
+  "ms": 17017
+ },
+ {
+  "id": "cowl/m12",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6
+  ],
+  "ms": 11366
+ },
+ {
+  "id": "cowl/m13",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 1
+ },
+ {
+  "id": "cowl/m13",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma reader + code",
+  "flags": [
+   4
+  ],
+  "checked": 9,
+  "total": 9,
+  "ms": 16657
+ },
+ {
+  "id": "cowl/m13",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6
+  ],
+  "ms": 2560
+ },
+ {
+  "id": "cowl/m14",
+  "kind": "stated count typo",
+  "line": 6,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 0
+ },
+ {
+  "id": "cowl/m14",
+  "kind": "stated count typo",
+  "line": 6,
+  "system": "Gemma reader + code",
+  "flags": [
+   6,
+   8
+  ],
+  "checked": 7,
+  "total": 9,
+  "ms": 16826
+ },
+ {
+  "id": "cowl/m14",
+  "kind": "stated count typo",
+  "line": 6,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6
+  ],
+  "ms": 2808
+ },
+ {
+  "id": "yoke/m15",
+  "kind": "stated count typo",
+  "line": 4,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 9,
+  "ms": 0
+ },
+ {
+  "id": "yoke/m15",
+  "kind": "stated count typo",
+  "line": 4,
+  "system": "Gemma reader + code",
+  "flags": [
+   4
+  ],
+  "checked": 9,
+  "total": 9,
+  "ms": 17441
+ },
+ {
+  "id": "yoke/m15",
+  "kind": "stated count typo",
+  "line": 4,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6,
+   8,
+   10
+  ],
+  "ms": 10741
+ },
+ {
+  "id": "yoke/m16",
+  "kind": "wrong instruction",
+  "line": 6,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 9,
+  "ms": 0
+ },
+ {
+  "id": "yoke/m16",
+  "kind": "wrong instruction",
+  "line": 6,
+  "system": "Gemma reader + code",
+  "flags": [
+   6
+  ],
+  "checked": 9,
+  "total": 9,
+  "ms": 17652
+ },
+ {
+  "id": "yoke/m16",
+  "kind": "wrong instruction",
+  "line": 6,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6,
+   8,
+   10
+  ],
+  "ms": 18288
+ },
+ {
+  "id": "yoke/m17",
+  "kind": "stated count typo",
+  "line": 10,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 9,
+  "ms": 1
+ },
+ {
+  "id": "yoke/m17",
+  "kind": "stated count typo",
+  "line": 10,
+  "system": "Gemma reader + code",
+  "flags": [
+   10
+  ],
+  "checked": 9,
+  "total": 9,
+  "ms": 6414
+ },
+ {
+  "id": "yoke/m17",
+  "kind": "stated count typo",
+  "line": 10,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6,
+   8,
+   10
+  ],
+  "ms": 10181
+ },
+ {
+  "id": "blanket/m18",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 1,
+  "total": 5,
+  "ms": 0
+ },
+ {
+  "id": "blanket/m18",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma reader + code",
+  "flags": [
+   3
+  ],
+  "checked": 4,
+  "total": 5,
+  "ms": 10221
+ },
+ {
+  "id": "blanket/m18",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 610
+ },
+ {
+  "id": "blanket/m19",
+  "kind": "stated count typo",
+  "line": 4,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 1,
+  "total": 5,
+  "ms": 0
+ },
+ {
+  "id": "blanket/m19",
+  "kind": "stated count typo",
+  "line": 4,
+  "system": "Gemma reader + code",
+  "flags": [
+   4
+  ],
+  "checked": 4,
+  "total": 5,
+  "ms": 10423
+ },
+ {
+  "id": "blanket/m19",
+  "kind": "stated count typo",
+  "line": 4,
+  "system": "Gemma alone",
+  "flags": [
+   4
+  ],
+  "ms": 1792
+ },
+ {
+  "id": "blanket/m20",
+  "kind": "wrong instruction",
+  "line": 3,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 1,
+  "total": 5,
+  "ms": 0
+ },
+ {
+  "id": "blanket/m20",
+  "kind": "wrong instruction",
+  "line": 3,
+  "system": "Gemma reader + code",
+  "flags": [
+   3
+  ],
+  "checked": 4,
+  "total": 5,
+  "ms": 9597
+ },
+ {
+  "id": "blanket/m20",
+  "kind": "wrong instruction",
+  "line": 3,
+  "system": "Gemma alone",
+  "flags": [],
+  "ms": 630
+ },
+ {
+  "id": "scarf/m21",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 0
+ },
+ {
+  "id": "scarf/m21",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma reader + code",
+  "flags": [
+   4
+  ],
+  "checked": 7,
+  "total": 9,
+  "ms": 16217
+ },
+ {
+  "id": "scarf/m21",
+  "kind": "cast-on doesn't fit",
+  "line": 2,
+  "system": "Gemma alone",
+  "flags": [
+   6
+  ],
+  "ms": 2278
+ },
+ {
+  "id": "scarf/m22",
+  "kind": "stated count typo",
+  "line": 6,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 0
+ },
+ {
+  "id": "scarf/m22",
+  "kind": "stated count typo",
+  "line": 6,
+  "system": "Gemma reader + code",
+  "flags": [
+   6
+  ],
+  "checked": 9,
+  "total": 9,
+  "ms": 16377
+ },
+ {
+  "id": "scarf/m22",
+  "kind": "stated count typo",
+  "line": 6,
+  "system": "Gemma alone",
+  "flags": [
+   6
+  ],
+  "ms": 6422
+ },
+ {
+  "id": "scarf/m23",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "regex reader + code",
+  "flags": [],
+  "checked": 2,
+  "total": 7,
+  "ms": 0
+ },
+ {
+  "id": "scarf/m23",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "Gemma reader + code",
+  "flags": [
+   6,
+   8
+  ],
+  "checked": 7,
+  "total": 9,
+  "ms": 36875
+ },
+ {
+  "id": "scarf/m23",
+  "kind": "wrong instruction",
+  "line": 4,
+  "system": "Gemma alone",
+  "flags": [
+   4,
+   6
+  ],
+  "ms": 3961
+ }
+]

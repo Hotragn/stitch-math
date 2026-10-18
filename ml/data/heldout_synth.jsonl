@@ -1,0 +1,200 @@
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 10 (dec): K1, ssk, k to last 3 sts, k2tog, k1.", "target": {"k": "row", "o": [["k", 1], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 1]]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 29: *hdc 2, inc; rep from * 5 more times (24)", "target": {"k": "row", "o": [{"o": [["hdc", 2], ["inc", 1]], "t": 6}], "s": 24}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 29 (WS): K2, purl to last 2 sts, k2.", "target": {"k": "row", "o": [["k", 2], {"o": [["p", 1]], "r": 1}, ["k", 2]]}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rnds 6-7 once more.", "target": {"k": "repeat", "f": 6, "to": 7, "t": 1}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 19: hdc in next 3 sts, dec, (hdc 6, dec) x 5, hdc 2 (36)", "target": {"k": "row", "o": [["hdc", 3], ["dec", 1], {"o": [["hdc", 6], ["dec", 1]], "t": 5}, ["hdc", 2]], "s": 36}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Repeat Rows 25-27 once more.", "target": {"k": "repeat", "f": 25, "to": 27, "t": 1}}
+{"craft": "crochet", "sizes": [], "line": "R 10: [dc 2, inc] 10 times (40)", "target": {"k": "row", "o": [{"o": [["dc", 2], ["inc", 1]], "t": 10}], "s": 40}}
+{"craft": "knit", "sizes": [], "line": "Row 54 (RS): K1, *yo, k2tog; rep from * to last 1 sts, k1.", "target": {"k": "row", "o": [["k", 1], {"o": [["yo", 1], ["k2tog", 1]], "r": 1}, ["k", 1]]}}
+{"craft": "crochet", "sizes": [], "line": "Round 2: *hdc 4, dec; rep from * 4 more times (25)", "target": {"k": "row", "o": [{"o": [["hdc", 4], ["dec", 1]], "t": 5}], "s": 25}}
+{"craft": "knit", "sizes": [], "line": "Row 30 (RS): K2, *yo, k2tog; rep from * to last 2 sts, k2.", "target": {"k": "row", "o": [["k", 2], {"o": [["yo", 1], ["k2tog", 1]], "r": 1}, ["k", 2]]}}
+{"craft": "crochet", "sizes": [], "line": "Round 4: inc in each st around (22)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 22}}
+{"craft": "crochet", "sizes": [], "line": "ch 18.", "target": {"k": "setup", "c": 18}}
+{"craft": "crochet", "sizes": [], "line": "R 23: *dc 6, inc; rep from * 4 more times (40)", "target": {"k": "row", "o": [{"o": [["dc", 6], ["inc", 1]], "t": 5}], "s": 40}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Row 30: Knit.", "target": {"k": "row", "o": [{"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Rnds 56-67: *K3, p1; rep from * around.", "target": {"k": "row", "x": 12, "o": [{"o": [["k", 3], ["p", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Row 2: BO 3 sts, k to end.", "target": {"k": "row", "o": [["bo", 3], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Using long-tail method, cast on 48 (52, 56, 60) sts.", "target": {"k": "setup", "c": [48, 52, 56, 60]}}
+{"craft": "crochet", "sizes": [], "line": "Row 12: ch 1, turn, dc in each st across (80)", "target": {"k": "row", "o": [["turnch", 1], {"o": [["dc", 1]], "r": 1}], "s": 80}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 12: (sc 3, sc2tog) 5 times (20)", "target": {"k": "row", "o": [{"o": [["sc", 3], ["sc2tog", 1]], "t": 5}], "s": 20}}
+{"craft": "crochet", "sizes": [], "line": "Round 8: inc in each st around (29)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 29}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Rnds 7-13: *K1, p1; rep from * around.", "target": {"k": "row", "x": 7, "o": [{"o": [["k", 1], ["p", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Row 14 (dec): K2, ssk, k to last 4 sts, k2tog, k2.", "target": {"k": "row", "o": [["k", 2], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 2]]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 7: (hdc 2, inc) * 6 (24)", "target": {"k": "row", "o": [{"o": [["hdc", 2], ["inc", 1]], "t": 6}], "s": 24}}
+{"craft": "crochet", "sizes": [], "line": "R 21: (dc 3, inc) * 6 (30)", "target": {"k": "row", "o": [{"o": [["dc", 3], ["inc", 1]], "t": 6}], "s": 30}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 15: *sc 3, dec; rep from * 5 more times (24)", "target": {"k": "row", "o": [{"o": [["sc", 3], ["dec", 1]], "t": 6}], "s": 24}}
+{"craft": "crochet", "sizes": [], "line": "Round 11: dc 4, dec, (dc 2, dec) x 9, dc 3 (25)", "target": {"k": "row", "o": [["dc", 4], ["dec", 1], {"o": [["dc", 2], ["dec", 1]], "t": 9}, ["dc", 3]], "s": 25}}
+{"craft": "knit", "sizes": [], "line": "Rnd 53: *K7, k2tog; rep from * to end. 70 sts.", "target": {"k": "row", "o": [{"o": [["k", 7], ["k2tog", 1]], "r": 1}], "s": 70}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rows 9-16 5 more times.", "target": {"k": "repeat", "f": 9, "to": 16, "t": 5}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 19: inc in each st around (15)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 15}}
+{"craft": "crochet", "sizes": [], "line": "Round 19: *hdc 5, dec; rep from * 7 more times (48)", "target": {"k": "row", "o": [{"o": [["hdc", 5], ["dec", 1]], "t": 8}], "s": 48}}
+{"craft": "crochet", "sizes": [], "line": "R 22: (sc 5, inc) * 12 (84)", "target": {"k": "row", "o": [{"o": [["sc", 5], ["inc", 1]], "t": 12}], "s": 84}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 2: sc in next 1 sts, inc, (sc 7, inc) x 5, sc 4 (46)", "target": {"k": "row", "o": [["sc", 1], ["inc", 1], {"o": [["sc", 7], ["inc", 1]], "t": 5}, ["sc", 4]], "s": 46}}
+{"craft": "crochet", "sizes": [], "line": "Round 28: sc 2, inc, (sc 5, inc) x 5, sc 4 (79)", "target": {"k": "row", "o": [["sc", 2], ["inc", 1], {"o": [["sc", 5], ["inc", 1]], "t": 5}, ["sc", 4]], "s": 79}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rnds 25-28 9 more times.", "target": {"k": "repeat", "f": 25, "to": 28, "t": 9}}
+{"craft": "knit", "sizes": [], "line": "Rnd 17: *K2, ssk; rep from * to end. 40 sts.", "target": {"k": "row", "o": [{"o": [["k", 2], ["ssk", 1]], "r": 1}], "s": 40}}
+{"craft": "crochet", "sizes": [], "line": "Row 17: ch 1, turn. sc in each st to end (24)", "target": {"k": "row", "o": [["turnch", 1], {"o": [["sc", 1]], "r": 1}], "s": 24}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Repeat Rnds 12-24 three more times.", "target": {"k": "repeat", "f": 12, "to": 24, "t": 3}}
+{"craft": "crochet", "sizes": [], "line": "Row 29: ch 1, turn, sc across (15)", "target": {"k": "row", "o": [["turnch", 1], {"o": [["sc", 1]], "r": 1}], "s": 15}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Rnds 17-23: *K2, p2; rep from * around.", "target": {"k": "row", "x": 7, "o": [{"o": [["k", 2], ["p", 2]], "r": 1}]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "R 56: Purl.", "target": {"k": "row", "o": [{"o": [["p", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 28: (hdc 6, dec) 6 times (42)", "target": {"k": "row", "o": [{"o": [["hdc", 6], ["dec", 1]], "t": 6}], "s": 42}}
+{"craft": "crochet", "sizes": [], "line": "R 24: dc in next 2 sts, dec, (dc 3, dec) x 5, dc 2 (20)", "target": {"k": "row", "o": [["dc", 2], ["dec", 1], {"o": [["dc", 3], ["dec", 1]], "t": 5}, ["dc", 2]], "s": 20}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Round 18: *K5, ssk; rep from * around", "target": {"k": "row", "o": [{"o": [["k", 5], ["ssk", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 22: sc in next 4 sts, dec, (sc 3, dec) x 5, sc 4 (51)", "target": {"k": "row", "o": [["sc", 4], ["dec", 1], {"o": [["sc", 3], ["dec", 1]], "t": 5}, ["sc", 4]], "s": 51}}
+{"craft": "crochet", "sizes": [], "line": "R 7: inc around (22)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 22}}
+{"craft": "crochet", "sizes": [], "line": "R 24: dc 2, inc, (dc 2, inc) x 11, dc 2 (52)", "target": {"k": "row", "o": [["dc", 2], ["inc", 1], {"o": [["dc", 2], ["inc", 1]], "t": 11}, ["dc", 2]], "s": 52}}
+{"craft": "crochet", "sizes": [], "line": "R 19: inc around (21)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 21}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 25: (dc 8, dec)x6 (54)", "target": {"k": "row", "o": [{"o": [["dc", 8], ["dec", 1]], "t": 6}], "s": 54}}
+{"craft": "crochet", "sizes": [], "line": "R 21: *sc 7, inc; rep from * 9 more times (90)", "target": {"k": "row", "o": [{"o": [["sc", 7], ["inc", 1]], "t": 10}], "s": 90}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Row 24: BO 9 sts, k to end.", "target": {"k": "row", "o": [["bo", 9], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 5: hdc 4, dec, (hdc 1, dec) x 5, hdc 4 (77)", "target": {"k": "row", "o": [["hdc", 4], ["dec", 1], {"o": [["hdc", 1], ["dec", 1]], "t": 5}, ["hdc", 4]], "s": 77}}
+{"craft": "knit", "sizes": [], "line": "Round 48: K3, m1r, k to end.", "target": {"k": "row", "o": [["k", 3], ["m1r", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 8: hdc in next 1 sts, dec, (hdc 5, dec) x 5, hdc 2 (24)", "target": {"k": "row", "o": [["hdc", 1], ["dec", 1], {"o": [["hdc", 5], ["dec", 1]], "t": 5}, ["hdc", 2]], "s": 24}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 26: (sc 4, sc2tog)x6 (30)", "target": {"k": "row", "o": [{"o": [["sc", 4], ["sc2tog", 1]], "t": 6}], "s": 30}}
+{"craft": "knit", "sizes": [], "line": "Row 21 (WS): K1, purl to last 1 sts, k1.", "target": {"k": "row", "o": [["k", 1], {"o": [["p", 1]], "r": 1}, ["k", 1]]}}
+{"craft": "knit", "sizes": [], "line": "Row 31: K1, *yo, ssk; rep from * to last 1 sts, k1.", "target": {"k": "row", "o": [["k", 1], {"o": [["yo", 1], ["ssk", 1]], "r": 1}, ["k", 1]]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Repeat Rows 11-23 5 more times.", "target": {"k": "repeat", "f": 11, "to": 23, "t": 5}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 33: BO 5 sts, k to end.", "target": {"k": "row", "o": [["bo", 5], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 13: [sc 3, invdec] 6 times (24)", "target": {"k": "row", "o": [{"o": [["sc", 3], ["invdec", 1]], "t": 6}], "s": 24}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Row 46 (RS): K4, *k2tog, yo; rep from * to last 4 sts, k4.", "target": {"k": "row", "o": [["k", 4], {"o": [["k2tog", 1], ["yo", 1]], "r": 1}, ["k", 4]]}}
+{"craft": "knit", "sizes": [], "line": "Row 10: Knit.", "target": {"k": "row", "o": [{"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 19: hdc 2, inc, (hdc 1, inc) x 9, hdc 1 (32)", "target": {"k": "row", "o": [["hdc", 2], ["inc", 1], {"o": [["hdc", 1], ["inc", 1]], "t": 9}, ["hdc", 1]], "s": 32}}
+{"craft": "knit", "sizes": [], "line": "Rows 8-15: *K2, p2; rep from * around.", "target": {"k": "row", "x": 8, "o": [{"o": [["k", 2], ["p", 2]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rows 21-26 5 more times.", "target": {"k": "repeat", "f": 21, "to": 26, "t": 5}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Repeat Rows 26-28 until piece measures 19 in.", "target": {"k": "repeat", "f": 26, "to": 28, "t": 0}}
+{"craft": "crochet", "sizes": [], "line": "R 16: hdc in next 4 sts, dec, (hdc 8, dec) x 5, hdc 4 (39)", "target": {"k": "row", "o": [["hdc", 4], ["dec", 1], {"o": [["hdc", 8], ["dec", 1]], "t": 5}, ["hdc", 4]], "s": 39}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Repeat Rows 20-27 until piece measures 9 in.", "target": {"k": "repeat", "f": 20, "to": 27, "t": 0}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 21: inc around (27)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 27}}
+{"craft": "knit", "sizes": [], "line": "Row 31: K2, *k2tog, yo; rep from * to last 2 sts, k2.", "target": {"k": "row", "o": [["k", 2], {"o": [["k2tog", 1], ["yo", 1]], "r": 1}, ["k", 2]]}}
+{"craft": "knit", "sizes": [], "line": "Row 34: K4, *yo, k2tog; rep from * to last 4 sts, k4.", "target": {"k": "row", "o": [["k", 4], {"o": [["yo", 1], ["k2tog", 1]], "r": 1}, ["k", 4]]}}
+{"craft": "crochet", "sizes": [], "line": "R 22: hdc 3, inc, (hdc 1, inc) x 5, hdc 1 (65)", "target": {"k": "row", "o": [["hdc", 3], ["inc", 1], {"o": [["hdc", 1], ["inc", 1]], "t": 5}, ["hdc", 1]], "s": 65}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "CO 64 [70, 76, 82, 88] sts.", "target": {"k": "setup", "c": [64, 70, 76, 82, 88]}}
+{"craft": "knit", "sizes": [], "line": "R 12-19: *K1, p1; rep from * around.", "target": {"k": "row", "x": 8, "o": [{"o": [["k", 1], ["p", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Chain 49.", "target": {"k": "setup", "c": 49}}
+{"craft": "crochet", "sizes": [], "line": "Row 27: ch 1, turn, sc across (18)", "target": {"k": "row", "o": [["turnch", 1], {"o": [["sc", 1]], "r": 1}], "s": 18}}
+{"craft": "crochet", "sizes": [], "line": "R 17-24: sc in each st around (42)", "target": {"k": "row", "x": 8, "o": [{"o": [["sc", 1]], "r": 1}], "s": 42}}
+{"craft": "crochet", "sizes": [], "line": "R 11: sc in next 2 sts, dec, (sc 3, dec) x 5, sc 4 (56)", "target": {"k": "row", "o": [["sc", 2], ["dec", 1], {"o": [["sc", 3], ["dec", 1]], "t": 5}, ["sc", 4]], "s": 56}}
+{"craft": "knit", "sizes": [], "line": "Rows 34-45: *K2, p1; rep from * around.", "target": {"k": "row", "x": 12, "o": [{"o": [["k", 2], ["p", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "CO 72 (76) sts.", "target": {"k": "setup", "c": [72, 76]}}
+{"craft": "crochet", "sizes": [], "line": "R 24: dc in next 1 sts, dec, (dc 5, dec) x 9, dc 4 (35)", "target": {"k": "row", "o": [["dc", 1], ["dec", 1], {"o": [["dc", 5], ["dec", 1]], "t": 9}, ["dc", 4]], "s": 35}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "R 36: *K8, k2tog; rep from * around. 48 [55, 62, 69] sts.", "target": {"k": "row", "o": [{"o": [["k", 8], ["k2tog", 1]], "r": 1}], "s": [48, 55, 62, 69]}}
+{"craft": "crochet", "sizes": [], "line": "Round 4: dc 3, inc, (dc 8, inc) x 9, dc 4 (48)", "target": {"k": "row", "o": [["dc", 3], ["inc", 1], {"o": [["dc", 8], ["inc", 1]], "t": 9}, ["dc", 4]], "s": 48}}
+{"craft": "knit", "sizes": [], "line": "Rnd 51: K1, m1l, k to end.", "target": {"k": "row", "o": [["k", 1], ["m1l", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 26: (sc 5, inc) 6 times (42)", "target": {"k": "row", "o": [{"o": [["sc", 5], ["inc", 1]], "t": 6}], "s": 42}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 15: sc 3, dec, (sc 5, dec) x 7, sc 3 (31)", "target": {"k": "row", "o": [["sc", 3], ["dec", 1], {"o": [["sc", 5], ["dec", 1]], "t": 7}, ["sc", 3]], "s": 31}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Rnd 29: *K5, k2tog; rep from * to end", "target": {"k": "row", "o": [{"o": [["k", 5], ["k2tog", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Round 17: *hdc 5, dec; rep from * 5 more times (36)", "target": {"k": "row", "o": [{"o": [["hdc", 5], ["dec", 1]], "t": 6}], "s": 36}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rows 13-21 6 more times.", "target": {"k": "repeat", "f": 13, "to": 21, "t": 6}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Repeat Rnds 12-17 8 more times.", "target": {"k": "repeat", "f": 12, "to": 17, "t": 8}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 26: [hdc 3, inc] 6 times (30)", "target": {"k": "row", "o": [{"o": [["hdc", 3], ["inc", 1]], "t": 6}], "s": 30}}
+{"craft": "crochet", "sizes": [], "line": "Rnds 27-34: dc in each st (32)", "target": {"k": "row", "x": 8, "o": [{"o": [["dc", 1]], "r": 1}], "s": 32}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "CO 64 [72, 80] sts.", "target": {"k": "setup", "c": [64, 72, 80]}}
+{"craft": "crochet", "sizes": [], "line": "Rounds 16-22: dc in each st around (96)", "target": {"k": "row", "x": 7, "o": [{"o": [["dc", 1]], "r": 1}], "s": 96}}
+{"craft": "crochet", "sizes": [], "line": "Row 1: sc in 2nd ch from hook and in each ch across (67)", "target": {"k": "row", "o": [["sk", 1], {"o": [["sc", 1]], "r": 1}], "s": 67}}
+{"craft": "crochet", "sizes": [], "line": "R 18-20: dc around (40)", "target": {"k": "row", "x": 3, "o": [{"o": [["dc", 1]], "r": 1}], "s": 40}}
+{"craft": "crochet", "sizes": [], "line": "Round 10: inc around (30)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 30}}
+{"craft": "crochet", "sizes": [], "line": "Rnds 23-24: dc in each st around (36)", "target": {"k": "row", "x": 2, "o": [{"o": [["dc", 1]], "r": 1}], "s": 36}}
+{"craft": "crochet", "sizes": [], "line": "Round 27: (dc 8, inc) 6 times (60)", "target": {"k": "row", "o": [{"o": [["dc", 8], ["inc", 1]], "t": 6}], "s": 60}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rnds 16-29 until piece measures 9 in.", "target": {"k": "repeat", "f": 16, "to": 29, "t": 0}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Rnd 54: Knit.", "target": {"k": "row", "o": [{"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 22: (dc 3, dec) * 10 (40)", "target": {"k": "row", "o": [{"o": [["dc", 3], ["dec", 1]], "t": 10}], "s": 40}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 2 (WS): K1, purl to last 1 sts, k1.", "target": {"k": "row", "o": [["k", 1], {"o": [["p", 1]], "r": 1}, ["k", 1]]}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rnds 10-35 until piece measures 25 in.", "target": {"k": "repeat", "f": 10, "to": 35, "t": 0}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Row 60: BO 11 sts, k to end.", "target": {"k": "row", "o": [["bo", 11], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Row 56: Purl.", "target": {"k": "row", "o": [{"o": [["p", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Round 50: *K6, k2tog; rep from * to end", "target": {"k": "row", "o": [{"o": [["k", 6], ["k2tog", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Rows 17-20: *K1, p1; rep from * around.", "target": {"k": "row", "x": 4, "o": [{"o": [["k", 1], ["p", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Row 1: sc in 2nd ch from hook and in each ch across (36)", "target": {"k": "row", "o": [["sk", 1], {"o": [["sc", 1]], "r": 1}], "s": 36}}
+{"craft": "crochet", "sizes": [], "line": "Round 5: [hdc 8, inc] 5 times (50)", "target": {"k": "row", "o": [{"o": [["hdc", 8], ["inc", 1]], "t": 5}], "s": 50}}
+{"craft": "knit", "sizes": [], "line": "Rows 26-29: *K2, p2; rep from * around.", "target": {"k": "row", "x": 4, "o": [{"o": [["k", 2], ["p", 2]], "r": 1}]}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "R 26: K5, m1l, k to end.", "target": {"k": "row", "o": [["k", 5], ["m1l", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Round 52: *K5, k2tog; rep from * around", "target": {"k": "row", "o": [{"o": [["k", 5], ["k2tog", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 18: 2 sc in each st around (13)", "target": {"k": "row", "o": [{"o": [["sc", 2, 1]], "r": 1}], "s": 13}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Cast on 48 [56, 64, 72, 80] sts.", "target": {"k": "setup", "c": [48, 56, 64, 72, 80]}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Rounds 35-42: *K2, p1; rep from * around.", "target": {"k": "row", "x": 8, "o": [{"o": [["k", 2], ["p", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 26: 2 dc in each st around (21)", "target": {"k": "row", "o": [{"o": [["dc", 2, 1]], "r": 1}], "s": 21}}
+{"craft": "crochet", "sizes": [], "line": "R 30-33: sc in each st around (30)", "target": {"k": "row", "x": 4, "o": [{"o": [["sc", 1]], "r": 1}], "s": 30}}
+{"craft": "knit", "sizes": [], "line": "Row 55 (dec): K2, ssk, k to last 4 sts, k2tog, k2.", "target": {"k": "row", "o": [["k", 2], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 2]]}}
+{"craft": "crochet", "sizes": [], "line": "R 16: [dc 8, dec] 8 times (72)", "target": {"k": "row", "o": [{"o": [["dc", 8], ["dec", 1]], "t": 8}], "s": 72}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Rows 35-38: *K2, p1; rep from * around.", "target": {"k": "row", "x": 4, "o": [{"o": [["k", 2], ["p", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rows 21-28 three more times.", "target": {"k": "repeat", "f": 21, "to": 28, "t": 3}}
+{"craft": "knit", "sizes": [], "line": "Round 16: K2, kfb, k to end.", "target": {"k": "row", "o": [["k", 2], ["kfb", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Round 10: K4, m1, k to end.", "target": {"k": "row", "o": [["k", 4], ["m1", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 9: hdc 2, dec, (hdc 1, dec) x 7, hdc 3 (46)", "target": {"k": "row", "o": [["hdc", 2], ["dec", 1], {"o": [["hdc", 1], ["dec", 1]], "t": 7}, ["hdc", 3]], "s": 46}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Repeat Rnds 4-11 8 more times.", "target": {"k": "repeat", "f": 4, "to": 11, "t": 8}}
+{"craft": "knit", "sizes": [], "line": "Row 38: K4, *yo, k2tog; rep from * to last 4 sts, k4.", "target": {"k": "row", "o": [["k", 4], {"o": [["yo", 1], ["k2tog", 1]], "r": 1}, ["k", 4]]}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Row 1 (dec): K3, ssk, k to last 5 sts, k2tog, k3.", "target": {"k": "row", "o": [["k", 3], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 3]]}}
+{"craft": "crochet", "sizes": [], "line": "Rounds 15-17: hdc in each st (32)", "target": {"k": "row", "x": 3, "o": [{"o": [["hdc", 1]], "r": 1}], "s": 32}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 7: inc around (29)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 29}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 18 (WS): K4, purl to last 4 sts, k4.", "target": {"k": "row", "o": [["k", 4], {"o": [["p", 1]], "r": 1}, ["k", 4]]}}
+{"craft": "crochet", "sizes": [], "line": "Rnds 30-32: sc in each st (64)", "target": {"k": "row", "x": 3, "o": [{"o": [["sc", 1]], "r": 1}], "s": 64}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 29: sc 4, inc, (sc 8, inc) x 9, sc 1 (63)", "target": {"k": "row", "o": [["sc", 4], ["inc", 1], {"o": [["sc", 8], ["inc", 1]], "t": 9}, ["sc", 1]], "s": 63}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Row 14 (dec): K4, ssk, k to last 6 sts, k2tog, k4.", "target": {"k": "row", "o": [["k", 4], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 4]]}}
+{"craft": "crochet", "sizes": [], "line": "R 19: sc 1, dec, (sc 6, dec) x 4, sc 4 (49)", "target": {"k": "row", "o": [["sc", 1], ["dec", 1], {"o": [["sc", 6], ["dec", 1]], "t": 4}, ["sc", 4]], "s": 49}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "R 10: Knit.", "target": {"k": "row", "o": [{"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 17: K5, purl to last 5 sts, k5.", "target": {"k": "row", "o": [["k", 5], {"o": [["p", 1]], "r": 1}, ["k", 5]]}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Rows 60-64: *K1, p1; rep from * around.", "target": {"k": "row", "x": 5, "o": [{"o": [["k", 1], ["p", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 18: inc around (23)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 23}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 36 (RS): K2, *yo, ssk; rep from * to last 2 sts, k2.", "target": {"k": "row", "o": [["k", 2], {"o": [["yo", 1], ["ssk", 1]], "r": 1}, ["k", 2]]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Rnd 49: K4, m1, k to end.", "target": {"k": "row", "o": [["k", 4], ["m1", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Rows 40-45: *K2, p1; rep from * around.", "target": {"k": "row", "x": 6, "o": [{"o": [["k", 2], ["p", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Row 26: ch 1, turn, sc in each st across (15)", "target": {"k": "row", "o": [["turnch", 1], {"o": [["sc", 1]], "r": 1}], "s": 15}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 6: (sc 3, inc) * 5 (25)", "target": {"k": "row", "o": [{"o": [["sc", 3], ["inc", 1]], "t": 5}], "s": 25}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Repeat Rnds 5-38 once more.", "target": {"k": "repeat", "f": 5, "to": 38, "t": 1}}
+{"craft": "crochet", "sizes": [], "line": "Chain 78.", "target": {"k": "setup", "c": 78}}
+{"craft": "knit", "sizes": [], "line": "Row 35 (RS): K3, *yo, ssk; rep from * to last 3 sts, k3.", "target": {"k": "row", "o": [["k", 3], {"o": [["yo", 1], ["ssk", 1]], "r": 1}, ["k", 3]]}}
+{"craft": "crochet", "sizes": [], "line": "R 22: inc around (29)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "r": 1}], "s": 29}}
+{"craft": "crochet", "sizes": [], "line": "R 13: [hdc 6, dec] 6 times (42)", "target": {"k": "row", "o": [{"o": [["hdc", 6], ["dec", 1]], "t": 6}], "s": 42}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 29: dc in next 4 sts, dec, (dc 4, dec) x 4, dc 4 (58)", "target": {"k": "row", "o": [["dc", 4], ["dec", 1], {"o": [["dc", 4], ["dec", 1]], "t": 4}, ["dc", 4]], "s": 58}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Repeat Rnds 7-8 until piece measures 4 in.", "target": {"k": "repeat", "f": 7, "to": 8, "t": 0}}
+{"craft": "knit", "sizes": [], "line": "Row 50: BO 7 sts, k to end.", "target": {"k": "row", "o": [["bo", 7], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rows 4-35 until piece measures 9 in.", "target": {"k": "repeat", "f": 4, "to": 35, "t": 0}}
+{"craft": "knit", "sizes": [], "line": "R 39: *K8, k2tog; rep from * around. 63 sts.", "target": {"k": "row", "o": [{"o": [["k", 8], ["k2tog", 1]], "r": 1}], "s": 63}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Row 32: BO 9 sts, k to end.", "target": {"k": "row", "o": [["bo", 9], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rnds 12-34 two more times.", "target": {"k": "repeat", "f": 12, "to": 34, "t": 2}}
+{"craft": "crochet", "sizes": [], "line": "Chain 62.", "target": {"k": "setup", "c": 62}}
+{"craft": "crochet", "sizes": [], "line": "R 11: (dc 3, inc) * 6 (30)", "target": {"k": "row", "o": [{"o": [["dc", 3], ["inc", 1]], "t": 6}], "s": 30}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Row 10 (dec): K3, ssk, k to last 5 sts, k2tog, k3.", "target": {"k": "row", "o": [["k", 3], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 3]]}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Using long-tail method, cast on 56 [64] sts.", "target": {"k": "setup", "c": [56, 64]}}
+{"craft": "knit", "sizes": [], "line": "Rnd 46: K6, kfb, k to end.", "target": {"k": "row", "o": [["k", 6], ["kfb", 1], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 28: (dc 7, dec) * 5 (40)", "target": {"k": "row", "o": [{"o": [["dc", 7], ["dec", 1]], "t": 5}], "s": 40}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Repeat Rows 12-28 until piece measures 27 in.", "target": {"k": "repeat", "f": 12, "to": 28, "t": 0}}
+{"craft": "crochet", "sizes": [], "line": "R 20: *sc 7, dec; rep from * 5 more times (48)", "target": {"k": "row", "o": [{"o": [["sc", 7], ["dec", 1]], "t": 6}], "s": 48}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Row 1 (WS): K2, purl to last 2 sts, k2.", "target": {"k": "row", "o": [["k", 2], {"o": [["p", 1]], "r": 1}, ["k", 2]]}}
+{"craft": "knit", "sizes": [], "line": "Row 6 (WS): K4, purl to last 4 sts, k4.", "target": {"k": "row", "o": [["k", 4], {"o": [["p", 1]], "r": 1}, ["k", 4]]}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Round 34: *K6, ssk; rep from * to end", "target": {"k": "row", "o": [{"o": [["k", 6], ["ssk", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Chain 27.", "target": {"k": "setup", "c": 27}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 15: (sc 7, dec)x6 (48)", "target": {"k": "row", "o": [{"o": [["sc", 7], ["dec", 1]], "t": 6}], "s": 48}}
+{"craft": "crochet", "sizes": [], "line": "Row 2: ch 1, turn, dc across (120)", "target": {"k": "row", "o": [["turnch", 1], {"o": [["dc", 1]], "r": 1}], "s": 120}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Rnd 41: *K6, ssk; rep from * around \u2014 48 (55) sts", "target": {"k": "row", "o": [{"o": [["k", 6], ["ssk", 1]], "r": 1}], "s": [48, 55]}}
+{"craft": "knit", "sizes": [], "line": "Row 16 (RS): K2, *yo, ssk; rep from * to last 2 sts, k2.", "target": {"k": "row", "o": [["k", 2], {"o": [["yo", 1], ["ssk", 1]], "r": 1}, ["k", 2]]}}
+{"craft": "knit", "sizes": ["XS", "S", "M", "L", "XL"], "line": "Row 39 (dec): K3, ssk, k to last 5 sts, k2tog, k3.", "target": {"k": "row", "o": [["k", 3], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 3]]}}
+{"craft": "knit", "sizes": [], "line": "R 25: *K3, ssk; rep from * to end (56)", "target": {"k": "row", "o": [{"o": [["k", 3], ["ssk", 1]], "r": 1}], "s": 56}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 11: (dc 5, dec)x5 (30)", "target": {"k": "row", "o": [{"o": [["dc", 5], ["dec", 1]], "t": 5}], "s": 30}}
+{"craft": "crochet", "sizes": [], "line": "Round 17: [sc 3, invdec] 12 times (48)", "target": {"k": "row", "o": [{"o": [["sc", 3], ["invdec", 1]], "t": 12}], "s": 48}}
+{"craft": "knit", "sizes": [], "line": "Row 4: K5, purl to last 5 sts, k5.", "target": {"k": "row", "o": [["k", 5], {"o": [["p", 1]], "r": 1}, ["k", 5]]}}
+{"craft": "crochet", "sizes": [], "line": "R 29: 2 sc in each st around (26)", "target": {"k": "row", "o": [{"o": [["sc", 2, 1]], "r": 1}], "s": 26}}
+{"craft": "knit", "sizes": [], "line": "Repeat Rnds 10-33 until piece measures 27 in.", "target": {"k": "repeat", "f": 10, "to": 33, "t": 0}}
+{"craft": "crochet", "sizes": [], "line": "R 6-9: dc around (40)", "target": {"k": "row", "x": 4, "o": [{"o": [["dc", 1]], "r": 1}], "s": 40}}
+{"craft": "crochet", "sizes": [], "line": "Rounds 4-11: dc in each st around (36)", "target": {"k": "row", "x": 8, "o": [{"o": [["dc", 1]], "r": 1}], "s": 36}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 5: 2 hdc in each st around (17)", "target": {"k": "row", "o": [{"o": [["hdc", 2, 1]], "r": 1}], "s": 17}}
+{"craft": "knit", "sizes": ["Short", "Long"], "line": "Cast on 56 [60] sts.", "target": {"k": "setup", "c": [56, 60]}}
+{"craft": "crochet", "sizes": [], "line": "Rnds 24-30: sc around (36)", "target": {"k": "row", "x": 7, "o": [{"o": [["sc", 1]], "r": 1}], "s": 36}}
+{"craft": "crochet", "sizes": [], "line": "Round 3: inc x 6 (28)", "target": {"k": "row", "o": [{"o": [["inc", 1]], "t": 6}], "s": 28}}
+{"craft": "knit", "sizes": [], "line": "Row 49: BO 7 sts, k to end.", "target": {"k": "row", "o": [["bo", 7], {"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "R 26: (dc 5, dec)x5 (30)", "target": {"k": "row", "o": [{"o": [["dc", 5], ["dec", 1]], "t": 5}], "s": 30}}
+{"craft": "crochet", "sizes": [], "line": "R 24: dc in next 3 sts, dec, (dc 8, dec) x 5, dc 1 (49)", "target": {"k": "row", "o": [["dc", 3], ["dec", 1], {"o": [["dc", 8], ["dec", 1]], "t": 5}, ["dc", 1]], "s": 49}}
+{"craft": "knit", "sizes": ["S", "M", "L"], "line": "Repeat Rnds 4-37 until piece measures 26 in.", "target": {"k": "repeat", "f": 4, "to": 37, "t": 0}}
+{"craft": "knit", "sizes": [], "line": "Row 52 (dec): K1, ssk, k to last 3 sts, k2tog, k1.", "target": {"k": "row", "o": [["k", 1], ["ssk", 1], {"o": [["k", 1]], "r": 1}, ["k2tog", 1], ["k", 1]]}}
+{"craft": "crochet", "sizes": [], "line": "R 16: sc in next 3 sts, inc, (sc 6, inc) x 11, sc 1 (74)", "target": {"k": "row", "o": [["sc", 3], ["inc", 1], {"o": [["sc", 6], ["inc", 1]], "t": 11}, ["sc", 1]], "s": 74}}
+{"craft": "crochet", "sizes": [], "line": "Row 1: sc in 2nd ch from hook and in each ch across (22)", "target": {"k": "row", "o": [["sk", 1], {"o": [["sc", 1]], "r": 1}], "s": 22}}
+{"craft": "crochet", "sizes": [], "line": "Rnd 8: sc in next 4 sts, dec, (sc 7, dec) x 7, sc 2 (80)", "target": {"k": "row", "o": [["sc", 4], ["dec", 1], {"o": [["sc", 7], ["dec", 1]], "t": 7}, ["sc", 2]], "s": 80}}
+{"craft": "knit", "sizes": [], "line": "Row 22: K5, purl to last 5 sts, k5.", "target": {"k": "row", "o": [["k", 5], {"o": [["p", 1]], "r": 1}, ["k", 5]]}}
+{"craft": "knit", "sizes": [], "line": "Row 15: Knit all sts.", "target": {"k": "row", "o": [{"o": [["k", 1]], "r": 1}]}}
+{"craft": "crochet", "sizes": [], "line": "Round 19: *dc 4, dec; rep from * 5 more times (30)", "target": {"k": "row", "o": [{"o": [["dc", 4], ["dec", 1]], "t": 6}], "s": 30}}
+{"craft": "crochet", "sizes": [], "line": "Rnds 26-33: dc in each st (40)", "target": {"k": "row", "x": 8, "o": [{"o": [["dc", 1]], "r": 1}], "s": 40}}
+{"craft": "crochet", "sizes": [], "line": "R 27: [sc 3, inc] 6 times (30)", "target": {"k": "row", "o": [{"o": [["sc", 3], ["inc", 1]], "t": 6}], "s": 30}}
+{"craft": "knit", "sizes": ["Child", "Teen", "Adult S", "Adult L"], "line": "Rnd 45: *K5, k2tog; rep from * to end", "target": {"k": "row", "o": [{"o": [["k", 5], ["k2tog", 1]], "r": 1}]}}
+{"craft": "knit", "sizes": [], "line": "R 46: *K4, k2tog; rep from * to end (63)", "target": {"k": "row", "o": [{"o": [["k", 4], ["k2tog", 1]], "r": 1}], "s": 63}}
+{"craft": "knit", "sizes": [], "line": "Row 59: BO 12 sts, k to end.", "target": {"k": "row", "o": [["bo", 12], {"o": [["k", 1]], "r": 1}]}}

@@ -93,4 +93,7 @@ footer { max-width: 1040px; margin: 0 auto; padding: 20px 20px 40px; color: var(
   textarea { min-height: 180px; font-size: 13px; }
   .primary { width: 100%; }
   .hero { padding-top: 18px; }
+  td.text { min-width: 150px; font-size: 12px; }
+  th, td { padding: 7px 5px; }
+  .c { min-width: 38px; padding: 2px 5px; }
 }
