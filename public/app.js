@@ -88,3 +88,26 @@ function render({ report, usage, ms, read, readMs, countMs }) {
   $("#grid").innerHTML = `<thead>${head}</thead><tbody>${rows}</tbody>`;
   $("#results").hidden = false;
 }
+
+// ?sample=hat runs a sample on load (used for links and the before/after screenshots)
+const want = new URLSearchParams(location.search).get("sample");
+if (want) {
+  const b = document.querySelector(`[data-sample="${CSS.escape(want)}"]`);
+  if (b) b.click();
+}
+
+// Savings calculator: the visitor's own numbers; the counting share is labelled as their estimate.
+const calc = (id) => document.getElementById(id);
+function recalc() {
+  if (!calc("c-n")) return;
+  const n = +calc("c-n").value, h = +calc("c-h").value, r = +calc("c-r").value, sh = +calc("c-s").value / 100;
+  calc("o-n").textContent = n; calc("o-h").textContent = h; calc("o-r").textContent = r; calc("o-s").textContent = `${Math.round(sh * 100)}%`;
+  const total = n * h * r;
+  calc("r-total").textContent = `£${Math.round(total).toLocaleString()}`;
+  calc("r-count").textContent = `£${Math.round(total * sh).toLocaleString()}`;
+  const per = 5 * n, sub = 144; // cheaper of $5 a pattern or the $12/mo plan
+  calc("r-ours").textContent = `$${Math.min(per, sub)}`;
+  calc("r-plan").textContent = per <= sub ? `${n} × $5 per pattern` : `Designer plan, $12/mo`;
+}
+["c-n", "c-h", "c-r", "c-s"].forEach((id) => calc(id)?.addEventListener("input", recalc));
+recalc();

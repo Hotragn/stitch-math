@@ -12,7 +12,7 @@ if (existsSync(".env")) for (const l of readFileSync(".env", "utf8").split("\n")
 const tracing = await initTracing();
 const PORT = Number(process.env.PORT ?? 8790);
 const PUB = join(import.meta.dirname, "..", "public");
-const SAMPLES: Record<string, string> = Object.fromEntries(["hat", "ball", "scarf"].map((n) => [n, readFileSync(join(import.meta.dirname, "..", "samples", `${n}.txt`), "utf8")]));
+const SAMPLES: Record<string, string> = Object.fromEntries(["hat", "hat-fixed", "ball", "scarf"].map((n) => [n, readFileSync(join(import.meta.dirname, "..", "samples", `${n}.txt`), "utf8")]));
 const MIME: Record<string, string> = { ".html": "text/html; charset=utf-8", ".css": "text/css", ".js": "text/javascript", ".svg": "image/svg+xml", ".png": "image/png", ".json": "application/json", ".ico": "image/x-icon", ".webmanifest": "application/manifest+json" };
 
 // Simple per-IP limit so the free key can't be drained.

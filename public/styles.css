@@ -97,3 +97,59 @@ footer { max-width: 1040px; margin: 0 auto; padding: 20px 20px 40px; color: var(
   th, td { padding: 7px 5px; }
   .c { min-width: 38px; padding: 2px 5px; }
 }
+
+/* ---------- Stitch theme ---------- */
+:root { --yarn: #c9a227; --stitch-a: rgba(138,59,79,.07); }
+@media (prefers-color-scheme: dark) { :root { --stitch-a: rgba(224,138,160,.06); } }
+/* knitted fabric: rows of little V stitches */
+body {
+  background-color: var(--bg);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='18' viewBox='0 0 22 18'%3E%3Cpath d='M2 2 Q6 9 11 16 M20 2 Q16 9 11 16' fill='none' stroke='%238a3b4f' stroke-opacity='.07' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 22px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='18' viewBox='0 0 22 18'%3E%3Cpath d='M2 2 Q6 9 11 16 M20 2 Q16 9 11 16' fill='none' stroke='%23e08aa0' stroke-opacity='.06' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E"); }
+}
+/* a sewn seam: dashed stitch line just inside the edge */
+.seam { position: relative; }
+.seam::after { content: ""; position: absolute; inset: 6px; border: 1.5px dashed var(--line); border-radius: inherit; pointer-events: none; opacity: .9; }
+.tool.seam::after { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.cols > .card { padding: 18px; }
+.kicker { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--accent); margin: 0 0 12px; }
+.stitches { display: inline-block; width: 44px; height: 14px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='14' viewBox='0 0 11 14'%3E%3Cpath d='M1 1 Q3 7 5.5 13 M10 1 Q8 7 5.5 13' fill='none' stroke='%238a3b4f' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x; }
+.row-no { display: inline-block; font: 600 12px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--accent); border: 1.5px dashed var(--accent); border-radius: 999px; padding: 3px 10px; margin-right: 12px; vertical-align: 6px; }
+code { font: 13px var(--mono); background: var(--unc-bg); padding: 1px 5px; border-radius: 5px; }
+/* glossary + faq */
+.glossary, .faq { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 18px; margin-top: 14px; }
+.glossary summary, .faq summary { cursor: pointer; padding: 12px 0; font-weight: 600; }
+.glossary dl { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px 22px; margin: 0 0 14px; }
+.glossary dl div { display: flex; gap: 10px; border-bottom: 1px dotted var(--line); padding: 6px 0; }
+.glossary dt { font: 600 13px var(--mono); min-width: 110px; color: var(--accent); }
+.glossary dd { margin: 0; color: var(--muted); font-size: 14px; }
+.faq p { color: var(--muted); margin: 0 0 14px; }
+.faq + .faq { margin-top: 10px; }
+/* before / after */
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+.ba figure { margin: 0; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.ba img { width: 100%; height: auto; border-radius: 8px; display: block; }
+.ba figcaption { font-size: 14px; color: var(--muted); margin: 10px 4px 2px; }
+/* savings calculator */
+.calc { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; margin-top: 16px; display: grid; gap: 14px; }
+.calc label { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; font-weight: 500; font-size: 15px; }
+.calc input[type=range] { grid-column: 1 / -1; accent-color: var(--accent); width: 100%; }
+.calc output { font: 600 15px var(--sans); color: var(--accent); font-variant-numeric: tabular-nums; }
+.assume { font-size: 13px; color: var(--muted); margin: 0; }
+.calc-out { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
+.calc-out div { border: 1.5px dashed var(--line); border-radius: 12px; padding: 12px; display: grid; gap: 2px; }
+.calc-out span { font-size: 13px; color: var(--muted); }
+.calc-out strong { font: 650 26px var(--serif); }
+.calc-out em { font-style: normal; font-size: 13px; color: var(--muted); }
+.table-card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 6px 14px; margin-top: 14px; }
+table.real td { vertical-align: middle; }
+table.real .c { margin-right: 6px; }
+@media (max-width: 760px) {
+  .ba, .calc-out, .glossary dl { grid-template-columns: 1fr; }
+  .row-no { display: table; margin: 0 0 8px; vertical-align: 0; }
+}

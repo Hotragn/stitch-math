@@ -50,7 +50,13 @@ The hat sample has two mistakes I put in:
 - The Adult S cast-on is 76, which an 8-stitch decrease can't divide. The checker works out that 80 would fit.
 - Rnd 3 says 68 where the stitches make 66.
 
-Everything else adds up. Every row also shows what Gemma read, so a designer can see exactly what was checked.
+Everything else adds up. Here's that check before and after fixing the two numbers it pointed at (real screenshots):
+
+![Before: 2 problems found, with the fixes](https://stitch-math.onrender.com/before.png)
+
+![After: no problems, 14 of 14 rows checked in 4 sizes](https://stitch-math.onrender.com/after.png)
+
+The site also has a plain-words guide for beginners, an abbreviation list, and a calculator for what a designer spends on editing. Every row also shows what Gemma read, so a designer can see exactly what was checked.
 
 ## Code
 
